@@ -294,11 +294,13 @@ class ProductionCalculator:
         self.recipes_by_output[output_resource].append(recipe)
 
   def get_best_recipe(self, resource: str, max_phase: int = 1, prefer_efficient: bool = True,
-                      allow_alternate: bool = True) -> Optional[Recipe]:
+                    allow_alternate: bool = True, allowed_alternates: Optional[List[str]] = None) -> Optional[Recipe]:
     """Get the best recipe for producing a resource within phase constraints"""
     candidates = [r for r in self.recipes_by_output.get(resource, []) if r.phase <= max_phase]
     if not allow_alternate:
       candidates = [r for r in candidates if not r.alternate_recipe]
+    elif allowed_alternates is not None:
+      candidates = [r for r in candidates if not r.alternate_recipe or r.id in allowed_alternates]
     if not candidates:
       return None
     valid_candidates = []
@@ -340,7 +342,7 @@ class ProductionCalculator:
     if resource in visited:
       return 1000.0
     visited.add(resource)
-    recipe = self.get_best_recipe(resource, max_phase, prefer_efficient = False, allow_alternate = allow_alternate)
+    recipe = self.get_best_recipe(resource, max_phase, prefer_efficient=False, allow_alternate=allow_alternate, allowed_alternates=None)
     if not recipe:
       visited.remove(resource)
       return 1000.0
@@ -361,14 +363,14 @@ class ProductionCalculator:
     return total_cost
 
   def calculate_production_chain(self, target_resource: str, target_quantity_per_minute: float,
-                                 max_phase: int = 1, allow_alternate: bool = True) -> ProductionNode:
+                               max_phase: int = 1, allow_alternate: bool = True, allowed_alternates: Optional[List[str]] = None) -> ProductionNode:
     """Calculate complete production chain for target resource"""
     visited: Set[str] = set()
     return self._build_chain_recursive(target_resource, target_quantity_per_minute, visited, 0, max_phase,
-                                       allow_alternate)
+                                       allow_alternate, allowed_alternates)
 
   def _build_chain_recursive(self, resource: str, quantity_per_minute: float, visited: Set[str], depth: int,
-                             max_phase: int, allow_alternate: bool = True) -> ProductionNode:
+                           max_phase: int, allow_alternate: bool = True, allowed_alternates: Optional[List[str]] = None) -> ProductionNode:
     """Recursively build production chain"""
     if resource in self.BASE_RESOURCES:
       return ProductionNode(
@@ -391,7 +393,7 @@ class ProductionCalculator:
         children = []
       )
     visited.add(resource)
-    recipe = self.get_best_recipe(resource, max_phase, allow_alternate = allow_alternate)
+    recipe = self.get_best_recipe(resource, max_phase, allow_alternate=allow_alternate, allowed_alternates=allowed_alternates)
     if not recipe:
       return ProductionNode(
         resource = resource,
@@ -414,7 +416,7 @@ class ProductionCalculator:
       input_per_minute = (input_amount / output_amount) * quantity_per_minute
       child_visited = visited.copy()
       child_node = self._build_chain_recursive(input_resource, input_per_minute, child_visited, depth + 1, max_phase,
-                                               allow_alternate)
+                                               allow_alternate, allowed_alternates)
       children.append(child_node)
     if not children and resource not in self.BASE_RESOURCES:
       visited.remove(resource)

@@ -97,9 +97,9 @@ def calculate():
   quantity = float(data.get('quantity', 1.0))
   max_phase = int(data.get('phase', 1))
   allow_alternate = data.get('allow_alternate', True)
-  chain = calculator.calculate_production_chain(target_resource, quantity, max_phase, allow_alternate)
+  allowed_alternates = data.get('allowed_alternates', None)
+  chain = calculator.calculate_production_chain(target_resource, quantity, max_phase, allow_alternate, allowed_alternates)
   totals = calculator.get_total_requirements(chain)
-
   # Check for missing recipes
   warning = None
   if chain.building_type == "NO RECIPE":
@@ -128,6 +128,20 @@ def calculate():
     'graph': graph,
     'warning': warning
   })
+
+@app.route('/get_alternate_recipes')
+def get_alternate_recipes():
+	alternates = []
+	for recipe in parser.recipes.values():
+		if recipe.alternate_recipe:
+			if not ALLOW_RELOAD and recipe.phase > 1:
+				continue
+			alternates.append({
+				'id': recipe.id,
+				'display_name': recipe.display_name,
+				'building': recipe.building_type
+			})
+	return jsonify(sorted(alternates, key=lambda x: x['display_name']))
 
 @app.route('/reload')
 def reload_recipes():

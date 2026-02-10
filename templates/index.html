@@ -38,6 +38,15 @@
   .footer a { color: #ff8c42; text-decoration: none; font-size: 16px; font-weight: 600; transition: color 0.2s; }
   .footer a:hover { color: #ff6622; }
   .footer-timestamp { color: #cbd5e0; font-size: 13px; font-style: italic; }
+  .advanced-section { background: #2a2a2a; padding: 0; border-radius: 8px; margin-top: 10px; overflow: hidden; max-height: 0; transition: max-height 0.3s ease-out, padding 0.3s ease-out; }
+  .advanced-section.expanded { max-height: 400px; padding: 15px; overflow-y: auto; }
+  .advanced-toggle { background: #4a4a4a; color: #cbd5e0; padding: 8px 16px; border: none; cursor: pointer; font-size: 13px; border-radius: 6px; transition: background 0.2s; margin-top: 10px; }
+  .advanced-toggle:hover { background: #5a5a5a; }
+  .alternate-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 8px; margin-top: 10px; }
+  .alternate-item { display: flex; align-items: center; gap: 8px; padding: 6px; background: #3a3a3a; border-radius: 4px; font-size: 13px; }
+  .alternate-item input { cursor: pointer; }
+  .select-all-row { display: flex; gap: 10px; margin-bottom: 10px; }
+  .select-all-row button { padding: 6px 12px; font-size: 12px; background: #4a4a4a; }
   </style>
 </head>
 <body>
@@ -76,11 +85,49 @@
       <button onclick="reload()">Reload Recipes</button>
       {% endif %}
     </div>
+    <button class="advanced-toggle" onclick="toggleAdvanced()" style="display: block; margin: 10px auto 0 auto;">⚙️ Advanced: Select Alternate Recipes</button>
+    <div id="advanced-section" class="advanced-section">
+      <div class="select-all-row">
+        <button onclick="selectAllAlternates(true)">Select All</button>
+        <button onclick="selectAllAlternates(false)">Deselect All</button>
+      </div>
+      <div id="alternate-list" class="alternate-list"></div>
+    </div>
   </div>
   
   <div id="results"></div>
   
   <script>
+    let alternateRecipes = [];
+    function loadAlternateRecipes() {
+      fetch('/get_alternate_recipes')
+      .then(r => r.json())
+      .then(data => {
+        alternateRecipes = data;
+        const container = document.getElementById('alternate-list');
+        container.innerHTML = '';
+        for (const recipe of data) {
+          const div = document.createElement('div');
+          div.className = 'alternate-item';
+          div.innerHTML = `
+            <input type="checkbox" id="alt-${recipe.id}" value="${recipe.id}" checked>
+            <label for="alt-${recipe.id}" style="cursor: pointer;">${recipe.display_name} <span style="opacity: 0.7; font-size: 11px;">(${recipe.building})</span></label>
+          `;
+          container.appendChild(div);
+        }
+      });
+    }
+    function toggleAdvanced() {
+      const section = document.getElementById('advanced-section');
+      section.classList.toggle('expanded');
+    }
+    function selectAllAlternates(checked) {
+      const checkboxes = document.querySelectorAll('.alternate-item input[type="checkbox"]');
+      checkboxes.forEach(cb => cb.checked = checked);
+    }
+    window.onload = function() {
+      loadAlternateRecipes();
+    };
     function calculate() {
       const btn = document.getElementById('calc-btn');
       const originalText = btn.textContent;
@@ -90,10 +137,15 @@
       const quantity = document.getElementById('quantity-input').value;
       const phase = document.getElementById('phase-select').value;
       const allowAlternate = document.getElementById('alternate-checkbox').checked;
+      let allowedAlternates = null;
+      if (allowAlternate) {
+        const checkedBoxes = document.querySelectorAll('.alternate-item input[type="checkbox"]:checked');
+        allowedAlternates = Array.from(checkedBoxes).map(cb => cb.value);
+      }
       fetch('/calculate', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({resource: resource, quantity: parseFloat(quantity), phase: parseInt(phase), allow_alternate: allowAlternate})
+        body: JSON.stringify({resource: resource, quantity: parseFloat(quantity), phase: parseInt(phase), allow_alternate: allowAlternate, allowed_alternates: allowedAlternates})
       })
       .then(r => r.json())
       .then(data => {
