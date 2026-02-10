@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Arcaneering Production Calculator</title>
+  <style>
+  body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 1400px; margin: 0 auto; padding: 20px; background: #2a2a2a; color: #e0e0e0; }
+  h1 { color: #ff8c42; margin-bottom: 10px; }
+  .input-section { background: #3a3a3a; padding: 20px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+  .input-row { display: flex; gap: 15px; align-items: center; flex-wrap: wrap; }
+  label { font-weight: 500; color: #cbd5e0; font-size: 14px; }
+  select, input { padding: 10px 12px; margin: 5px 0; font-size: 16px; background: #2a2a2a; color: #e0e0e0; border: 2px solid #4a4a4a; border-radius: 6px; transition: border-color 0.2s, background 0.2s; }
+  select:hover, input:hover { border-color: #ff8c42; background: #323232; }
+  select:focus, input:focus { outline: none; border-color: #ff8c42; background: #323232; }
+  button { padding: 12px 24px; margin: 5px; font-size: 16px; font-weight: 600; background: linear-gradient(135deg, #ff8c42 0%, #ff6622 100%); color: white; border: none; cursor: pointer; border-radius: 6px; transition: transform 0.1s, box-shadow 0.2s; box-shadow: 0 2px 8px rgba(255,140,66,0.3); }
+  button:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(255,140,66,0.5); }
+  button:active { transform: translateY(0); }
+  button:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+  #graph-container { background: #3a3a3a; padding: 20px; border-radius: 8px; min-height: 400px; position: relative; overflow-x: auto; overflow-y: auto; max-width: calc(100vw - 80px); box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+  .graph-node { position: absolute; padding: 12px; border-radius: 8px; min-width: 140px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.4); z-index: 1; transition: transform 0.2s, box-shadow 0.2s; }
+  .graph-node:hover { transform: scale(1.05); box-shadow: 0 6px 16px rgba(0,0,0,0.6); }
+  .node-raw { background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%); border: 2px solid #718096; }
+  .node-production { background: linear-gradient(135deg, #ff8c42 0%, #ff6622 100%); border: 2px solid #ff6622; }
+  .node-final { background: linear-gradient(135deg, #48bb78 0%, #38a169 100%); border: 2px solid #38a169; }
+  .node-title { font-weight: bold; font-size: 14px; margin-bottom: 4px; }
+  .node-rate { font-size: 12px; margin-bottom: 4px; }
+  .node-building { font-size: 11px; opacity: 0.9; }
+  .graph-edge { position: absolute; pointer-events: none; }
+  .edge-line { stroke: #cbd5e0; stroke-width: 2; fill: none; cursor: pointer; transition: stroke-width 0.2s, stroke 0.2s; }
+  .edge-line:hover { stroke: #ffd700; stroke-width: 4; }
+  .edge-label { font-size: 11px; fill: #ffd700; font-weight: bold; text-shadow: 1px 1px 2px #000, -1px -1px 2px #000, 1px -1px 2px #000, -1px 1px 2px #000; pointer-events: none; }
+  .totals { background: #3a3a3a; padding: 20px; border-radius: 8px; margin-top: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); animation: fadeIn 0.3s ease-out; }
+  .totals h3 { color: #ff8c42; margin-top: 0; }
+  .resource-item { display: inline-block; margin: 5px; padding: 8px 14px; background: #5a5a5a; border-radius: 6px; transition: background 0.2s; }
+  .resource-item:hover { background: #6a6a6a; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  .warning-box { background: linear-gradient(135deg, #ff4444 0%, #cc3333 100%); color: white; padding: 15px; border-radius: 8px; margin-bottom: 20px; font-weight: bold; box-shadow: 0 4px 12px rgba(255,68,68,0.4); animation: fadeIn 0.3s ease-out; }
+  .footer { display: flex; align-items: center; justify-content: center; gap: 30px; margin-top: 40px; padding: 20px; opacity: 0.9; flex-wrap: wrap; }
+  .footer a { color: #ff8c42; text-decoration: none; font-size: 16px; font-weight: 600; transition: color 0.2s; }
+  .footer a:hover { color: #ff6622; }
+  .footer-timestamp { color: #cbd5e0; font-size: 13px; font-style: italic; }
+  </style>
+</head>
+<body>
+  <h1 style="display: flex; align-items: center; gap: 15px;"><img src="{{ url_for('static', filename='logotype_transparent.png') }}" alt="Arcaneering" style="height: 50px;"> Production Calculator</h1>
+  
+  <div class="input-section">
+    <div class="input-row">
+      <div>
+        <label>Target Resource:</label>
+        <select id="resource-select" onchange="calculate()">
+          {% for resource_key, resource_name in resources %}
+          <option value="{{ resource_key }}">{{ resource_name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div>
+        <label>Quantity per minute:</label>
+        <input type="number" id="quantity-input" value="10" step="0.1" min="0.1">
+      </div>
+      <div>
+        <label>Max Act:</label>
+        <select id="phase-select">
+          <option value="1">Act I</option>
+          <option value="2" {% if not allow_reload %}disabled style="color: #666;"{% endif %}>Act II {% if not allow_reload %}🔒{% endif %}</option>
+          <option value="3" {% if not allow_reload %}disabled style="color: #666;"{% endif %}>Act III {% if not allow_reload %}🔒{% endif %}</option>
+        </select>
+      </div>
+      <div>
+        <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+          <input type="checkbox" id="alternate-checkbox" checked onchange="calculate()" style="cursor: pointer; width: auto;">
+          <span>Use Alternate Recipes</span>
+        </label>
+      </div>
+      <button id="calc-btn" onclick="calculate()">Calculate</button>
+      {% if allow_reload %}
+      <button onclick="reload()">Reload Recipes</button>
+      {% endif %}
+    </div>
+  </div>
+  
+  <div id="results"></div>
+  
+  <script>
+    function calculate() {
+      const btn = document.getElementById('calc-btn');
+      const originalText = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = 'Calculating...';
+      const resource = document.getElementById('resource-select').value;
+      const quantity = document.getElementById('quantity-input').value;
+      const phase = document.getElementById('phase-select').value;
+      const allowAlternate = document.getElementById('alternate-checkbox').checked;
+      fetch('/calculate', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({resource: resource, quantity: parseFloat(quantity), phase: parseInt(phase), allow_alternate: allowAlternate})
+      })
+      .then(r => r.json())
+      .then(data => {
+        displayResults(data);
+        btn.disabled = false;
+        btn.textContent = originalText;
+      })
+      .catch(err => {
+        console.error(err);
+        btn.disabled = false;
+        btn.textContent = originalText;
+      });
+    }
+    
+    function displayResults(data) {
+      let html = '';
+      if (data.warning) {
+        html += `<div class="warning-box">${data.warning}</div>`;
+      }
+      html += '<h2>Production Graph</h2>';
+      html += '<div id="graph-container"></div>';
+      html += '<div class="totals"><h3>Total Raw Resources Required</h3>';
+      for (const [resource, amount] of Object.entries(data.raw_resources)) {
+        html += `<div class="resource-item">${resource}: ${amount.toFixed(2)}/min</div>`;
+      }
+      html += '</div>';
+      html += '<div class="totals"><h3>Total Buildings Required</h3>';
+      for (const [building, count] of Object.entries(data.buildings)) {
+        html += `<div class="resource-item">${building}: ${count.toFixed(2)}</div>`;
+      }
+      html += '</div>';
+      if (data.alternate_recipes && data.alternate_recipes.length > 0) {
+        html += '<div class="totals"><h3>Alternate Recipes Used</h3>';
+        for (const recipe of data.alternate_recipes) {
+          html += `<div class="resource-item">${recipe}</div>`;
+        }
+        html += '</div>';
+      }
+      html += '</div>';
+      document.getElementById('results').innerHTML = html;
+      renderGraph(data.graph);
+    }
+    
+    function renderGraph(graph) {
+      const container = document.getElementById('graph-container');
+      container.innerHTML = '';
+      const nodes = graph.nodes;
+      const edges = graph.edges;
+      const layers = calculateLayers(nodes, edges);
+      const positions = calculatePositions(layers);
+      drawEdges(container, edges, positions);
+      drawNodes(container, nodes, positions);
+      let maxX = 0;
+      let maxY = 0;
+      for (const pos of Object.values(positions)) {
+        maxX = Math.max(maxX, pos.x + 200);
+        maxY = Math.max(maxY, pos.y + 100);
+      }
+      container.style.minHeight = maxY + 'px';
+    }
+
+    function calculateLayers(nodes, edges) {
+      const layers = [];
+      const nodeDepth = {};
+      const inDegree = {};
+      const outDegree = {};
+      for (const key of Object.keys(nodes)) {
+        inDegree[key] = 0;
+        outDegree[key] = 0;
+      }
+      for (const edge of edges) {
+        outDegree[edge.from]++;
+        inDegree[edge.to]++;
+      }
+      const adjListReverse = {};
+      for (const key of Object.keys(nodes)) {
+        adjListReverse[key] = [];
+      }
+      for (const edge of edges) {
+        adjListReverse[edge.to].push(edge.from);
+      }
+      function dfs(key, depth) {
+        if (nodeDepth[key] !== undefined) {
+          if (depth <= nodeDepth[key]) {
+            return;
+          }
+        }
+        nodeDepth[key] = depth;
+        for (const prev of adjListReverse[key]) {
+          dfs(prev, depth + 1);
+        }
+      }
+      for (const key of Object.keys(nodes)) {
+        if (outDegree[key] === 0) {
+          dfs(key, 0);
+        }
+      }
+      let maxDepth = 0;
+      for (const depth of Object.values(nodeDepth)) {
+        maxDepth = Math.max(maxDepth, depth);
+      }
+      for (const [key, depth] of Object.entries(nodeDepth)) {
+        const reversedDepth = maxDepth - depth;
+        if (!layers[reversedDepth]) layers[reversedDepth] = [];
+        layers[reversedDepth].push(key);
+      }
+      return layers;
+    }
+
+    function calculatePositions(layers) {
+      const positions = {};
+      const layerWidth = 280;
+      const nodeHeight = 100;
+      for (let i = 0; i < layers.length; i++) {
+        const layer = layers[i];
+        for (let j = 0; j < layer.length; j++) {
+          positions[layer[j]] = {
+            x: i * layerWidth + 50,
+            y: j * nodeHeight + 50
+          };
+        }
+      }
+      return positions;
+    }
+
+    function drawNodes(container, nodes, positions) {
+      for (const [key, node] of Object.entries(nodes)) {
+        const pos = positions[key];
+        const div = document.createElement('div');
+        div.className = 'graph-node';
+        if (node.type === 'raw') {
+          div.classList.add('node-raw');
+          div.innerHTML = `
+            <div class="node-title">${node.resource}</div>
+            <div class="node-rate">${node.rate.toFixed(1)}/min</div>
+          `;
+        } else {
+          div.classList.add('node-production');
+          div.innerHTML = `
+            <div class="node-title">${node.output_resource}</div>
+            <div class="node-rate">${node.output_rate.toFixed(1)}/min</div>
+            <div class="node-building" style="font-size: 10px; opacity: 0.8; font-style: italic;">${node.recipe}</div>
+            <div class="node-building">${node.building_count.toFixed(2)}x ${node.building}</div>
+          `;
+        }
+        div.style.left = pos.x + 'px';
+        div.style.top = pos.y + 'px';
+        container.appendChild(div);
+      }
+    }
+
+    function drawEdges(container, edges, positions) {
+      let maxX = 0;
+      let maxY = 0;
+      for (const pos of Object.values(positions)) {
+        maxX = Math.max(maxX, pos.x + 200);
+        maxY = Math.max(maxY, pos.y + 100);
+      }
+      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      svg.style.position = 'absolute';
+      svg.style.top = '0';
+      svg.style.left = '0';
+      svg.style.width = maxX + 'px';
+      svg.style.height = maxY + 'px';
+      svg.style.pointerEvents = 'auto';
+      svg.style.zIndex = '0';
+      const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+      const marker = document.createElementNS('http://www.w3.org/2000/svg', 'marker');
+      marker.setAttribute('id', 'arrowhead');
+      marker.setAttribute('markerWidth', '10');
+      marker.setAttribute('markerHeight', '10');
+      marker.setAttribute('refX', '9');
+      marker.setAttribute('refY', '3');
+      marker.setAttribute('orient', 'auto');
+      const polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+      polygon.setAttribute('points', '0 0, 10 3, 0 6');
+      polygon.setAttribute('fill', '#cbd5e0');
+      marker.appendChild(polygon);
+      defs.appendChild(marker);
+      const markerHover = document.createElementNS('http://www.w3.org/2000/svg', 'marker');
+      markerHover.setAttribute('id', 'arrowhead-hover');
+      markerHover.setAttribute('markerWidth', '10');
+      markerHover.setAttribute('markerHeight', '10');
+      markerHover.setAttribute('refX', '9');
+      markerHover.setAttribute('refY', '3');
+      markerHover.setAttribute('orient', 'auto');
+      const polygonHover = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+      polygonHover.setAttribute('points', '0 0, 10 3, 0 6');
+      polygonHover.setAttribute('fill', '#ffd700');
+      markerHover.appendChild(polygonHover);
+      defs.appendChild(markerHover);
+      svg.appendChild(defs);
+      const edgesBySource = {};
+      const edgesByTarget = {};
+      for (const edge of edges) {
+        if (!edgesBySource[edge.from]) edgesBySource[edge.from] = [];
+        edgesBySource[edge.from].push(edge);
+        if (!edgesByTarget[edge.to]) edgesByTarget[edge.to] = [];
+        edgesByTarget[edge.to].push(edge);
+      }
+      const needsStaggering = {};
+      for (const [sourceKey, sourceEdges] of Object.entries(edgesBySource)) {
+        if (sourceEdges.length > 1) {
+          const targetPositions = sourceEdges.map(e => ({x: positions[e.to].x, y: positions[e.to].y, edge: e}));
+          const byRow = {};
+          for (const tp of targetPositions) {
+            if (!byRow[tp.y]) byRow[tp.y] = [];
+            byRow[tp.y].push(tp);
+          }
+          for (const rowTargets of Object.values(byRow)) {
+            if (rowTargets.length > 1) {
+              const xPositions = rowTargets.map(t => t.x);
+              const uniqueX = new Set(xPositions);
+              if (uniqueX.size > 1) {
+                for (const tp of rowTargets) {
+                  needsStaggering[`${tp.edge.from}-${tp.edge.to}`] = true;
+                }
+              }
+            }
+          }
+        }
+      }
+      function checkCollision(x, y, positions) {
+        for (const pos of Object.values(positions)) {
+          if (x > pos.x && x < pos.x + 140 && y > pos.y && y < pos.y + 80) {
+            return true;
+          }
+        }
+        return false;
+      }
+      for (const edge of edges) {
+        const fromPos = positions[edge.from];
+        const toPos = positions[edge.to];
+        if (!fromPos || !toPos) continue;
+        const edgeKey = `${edge.from}-${edge.to}`;
+        const useStaggering = needsStaggering[edgeKey];
+        let x1 = fromPos.x + 140;
+        let y1 = fromPos.y + 40;
+        let x2 = toPos.x;
+        let y2 = toPos.y + 40;
+        if (useStaggering) {
+          const sourceEdges = edgesBySource[edge.from];
+          const sourceIndex = sourceEdges.indexOf(edge);
+          const sourceCount = sourceEdges.length;
+          const sourceSpacing = 25;
+          const sourceTotalHeight = (sourceCount - 1) * sourceSpacing;
+          const sourceStartOffset = -sourceTotalHeight / 2;
+          const sourceYOffset = sourceStartOffset + sourceIndex * sourceSpacing;
+          const targetEdges = edgesByTarget[edge.to];
+          const targetIndex = targetEdges.indexOf(edge);
+          const targetCount = targetEdges.length;
+          const targetSpacing = 25;
+          const targetTotalHeight = (targetCount - 1) * targetSpacing;
+          const targetStartOffset = -targetTotalHeight / 2;
+          const targetYOffset = targetStartOffset + targetIndex * targetSpacing;
+          y1 = fromPos.y + 40 + sourceYOffset;
+          y2 = toPos.y + 40 + targetYOffset;
+          const dx = x2 - x1;
+          const cp1x = x1 + dx * 0.4;
+          const cp1y = y1;
+          const cp2x = x1 + dx * 0.6;
+          const cp2y = y2;
+          const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+          const pathData = `M ${x1} ${y1} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${x2} ${y2}`;
+          path.setAttribute('d', pathData);
+          path.setAttribute('class', 'edge-line');
+          path.setAttribute('fill', 'none');
+          path.setAttribute('marker-end', 'url(#arrowhead)');
+          path.addEventListener('mouseenter', () => {
+            path.setAttribute('marker-end', 'url(#arrowhead-hover)');
+          });
+          path.addEventListener('mouseleave', () => {
+            path.setAttribute('marker-end', 'url(#arrowhead)');
+          });
+          svg.appendChild(path);
+          let labelT = 0.5;
+          let labelX = x1 + dx * labelT;
+          let labelY = y1 * (1 - labelT) * (1 - labelT) * (1 - labelT) + 3 * cp1y * labelT * (1 - labelT) * (1 - labelT) + 3 * cp2y * labelT * labelT * (1 - labelT) + y2 * labelT * labelT * labelT;
+          if (checkCollision(labelX, labelY, positions)) {
+            labelT = 0.3;
+            labelX = x1 + dx * labelT;
+            labelY = y1 * (1 - labelT) * (1 - labelT) * (1 - labelT) + 3 * cp1y * labelT * (1 - labelT) * (1 - labelT) + 3 * cp2y * labelT * labelT * (1 - labelT) + y2 * labelT * labelT * labelT;
+            if (checkCollision(labelX, labelY, positions)) {
+              labelT = 0.7;
+              labelX = x1 + dx * labelT;
+              labelY = y1 * (1 - labelT) * (1 - labelT) * (1 - labelT) + 3 * cp1y * labelT * (1 - labelT) * (1 - labelT) + 3 * cp2y * labelT * labelT * (1 - labelT) + y2 * labelT * labelT * labelT;
+            }
+          }
+          const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+          text.setAttribute('x', labelX);
+          text.setAttribute('y', labelY - 5);
+          text.setAttribute('class', 'edge-label');
+          text.setAttribute('text-anchor', 'middle');
+          text.textContent = `${edge.rate.toFixed(1)}/min`;
+          svg.appendChild(text);
+        } else {
+          const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+          line.setAttribute('x1', x1);
+          line.setAttribute('y1', y1);
+          line.setAttribute('x2', x2);
+          line.setAttribute('y2', y2);
+          line.setAttribute('class', 'edge-line');
+          line.setAttribute('marker-end', 'url(#arrowhead)');
+          line.addEventListener('mouseenter', () => {
+            line.setAttribute('marker-end', 'url(#arrowhead-hover)');
+          });
+          line.addEventListener('mouseleave', () => {
+            line.setAttribute('marker-end', 'url(#arrowhead)');
+          });
+          svg.appendChild(line);
+          const midX = (x1 + x2) / 2;
+          const midY = (y1 + y2) / 2;
+          let labelX = midX;
+          let labelY = midY;
+          if (checkCollision(labelX, labelY, positions)) {
+            labelX = x1 + (x2 - x1) * 0.3;
+            labelY = y1 + (y2 - y1) * 0.3;
+            if (checkCollision(labelX, labelY, positions)) {
+              labelX = x1 + (x2 - x1) * 0.7;
+              labelY = y1 + (y2 - y1) * 0.7;
+            }
+          }
+          const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+          text.setAttribute('x', labelX);
+          text.setAttribute('y', labelY - 5);
+          text.setAttribute('class', 'edge-label');
+          text.setAttribute('text-anchor', 'middle');
+          text.textContent = `${edge.rate.toFixed(1)}/min`;
+          svg.appendChild(text);
+        }
+      }
+      container.insertBefore(svg, container.firstChild);
+    }
+    
+    {% if allow_reload %}
+    function reload() {
+      fetch('/reload')
+      .then(r => r.json())
+      .then(data => {
+        alert(`Reloaded ${data.recipe_count} recipes!`);
+        location.reload();
+      });
+    }
+    {% endif %}
+  </script>
+  <div class="footer">
+    <a href="https://store.steampowered.com/app/3858960/Arcaneering_Beyond_Automation/" target="_blank"><img src="{{ url_for('static', filename='steam_icon.png') }}" alt="Steam Store" style="height: 40px;"></a>
+    <img src="{{ url_for('static', filename='studio_logo.png') }}" alt="Studio Logo" style="height: 50px;">
+    <a href="https://discord.gg/9dUkV3JAsG" target="_blank"><img src="{{ url_for('static', filename='discord_icon.png') }}" alt="Discord" style="height: 20px;"></a>
+    <span class="footer-timestamp">Last updated: {{ snapshot_timestamp }}</span>
+  </div>
+</body>
+</html>

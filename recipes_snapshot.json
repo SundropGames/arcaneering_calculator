@@ -1,0 +1,1938 @@
+{
+  "timestamp": "2026-02-10T21:46:54.634376",
+  "recipes": {
+    "advanced_component": {
+      "id": "advanced_component",
+      "display_name": "Advanced Component",
+      "inputs": {
+        "INGOT": 6,
+        "MAGIC_ESSENCE": 2
+      },
+      "outputs": {
+        "COMPONENT": 2
+      },
+      "production_time": 12.0,
+      "building_type": "Assembler",
+      "required_research": "advanced_components",
+      "energy_consumption": 18,
+      "mana_consumption": 0.0,
+      "phase": 1,
+      "alternate_recipe": false
+    },
+    "advanced_machinery_crafting": {
+      "id": "advanced_machinery_crafting",
+      "display_name": "Advanced Machinery",
+      "inputs": {
+        "COMPONENT": 3,
+        "GOLD_INGOT": 2
+      },
+      "outputs": {
+        "ADVANCED_MACHINERY": 1
+      },
+      "production_time": 25.0,
+      "building_type": "Assembler",
+      "required_research": "advanced_automation",
+      "energy_consumption": 30,
+      "mana_consumption": 0.0,
+      "phase": 1,
+      "alternate_recipe": false
+    },
+    "alternate_machinery": {
+      "id": "alternate_machinery",
+      "display_name": "Alternate Machinery",
+      "inputs": {
+        "COPPER_WIRE": 2,
+        "STEEL_PLATE": 3
+      },
+      "outputs": {
+        "ADVANCED_MACHINERY": 2
+      },
+      "production_time": 20.0,
+      "building_type": "Assembler",
+      "required_research": "merchant_alternate_machinery",
+      "energy_consumption": 30,
+      "mana_consumption": 0.0,
+      "phase": 2,
+      "alternate_recipe": true
+    },
+    "arcane_componentry": {
+      "id": "arcane_componentry",
+      "display_name": "Arcane Componentry",
+      "inputs": {
+        "MAGIC_ESSENCE": 10
+      },
+      "outputs": {
+        "COMPONENT": 2
+      },
+      "production_time": 8.0,
+      "building_type": "Assembler",
+      "required_research": "arcane_componentry",
+      "energy_consumption": 12,
+      "mana_consumption": 0.0,
+      "phase": 1,
+      "alternate_recipe": true
+    },
+    "arcane_device_crafting": {
+      "id": "arcane_device_crafting",
+      "display_name": "Arcane Device",
+      "inputs": {
+        "MAGIC_ESSENCE": 4,
+        "COMPONENT": 4,
+        "ARCANE_CRYSTAL": 2
+      },
+      "outputs": {
+        "ARCANE_DEVICE": 1
+      },
+      "production_time": 30.0,
+      "building_type": "Assembler",
+      "required_research": "arcane_engineering",
+      "energy_consumption": 25,
+      "mana_consumption": 0.0,
+      "phase": 1,
+      "alternate_recipe": false
+    },
+    "basic_component": {
+      "id": "basic_component",
+      "display_name": "Basic Component",
+      "inputs": {
+        "INGOT": 4,
+        "MAGIC_ESSENCE": 1
+      },
+      "outputs": {
+        "COMPONENT": 1
+      },
+      "production_time": 8.0,
+      "building_type": "Assembler",
+      "required_research": "",
+      "energy_consumption": 12,
+      "mana_consumption": 0.0,
+      "phase": 1,
+      "alternate_recipe": false
+    },
+    "blast_component": {
+      "id": "blast_component",
+      "display_name": "Blast Component",
+      "inputs": {
+        "INGOT": 4,
+        "MAGIC_ESSENCE": 1
+      },
+      "outputs": {
+        "COMPONENT": 3
+      },
+      "production_time": 10.0,
+      "building_type": "Assembler",
+      "required_research": "blast_component",
+      "energy_consumption": 30,
+      "mana_consumption": 0.0,
+      "phase": 2,
+      "alternate_recipe": false
+    },
+    "bronze_casing": {
+      "id": "bronze_casing",
+      "display_name": "Bronze Casing",
+      "inputs": {
+        "BRONZE_INGOT": 3
+      },
+      "outputs": {
+        "BRONZE_CASING": 1
+      },
+      "production_time": 12.0,
+      "building_type": "Assembler",
+      "required_research": "bronze_casing",
+      "energy_consumption": 20,
+      "mana_consumption": 0.0,
+      "phase": 2,
+      "alternate_recipe": false
+    },
+    "bronze_key_crafting": {
+      "id": "bronze_key_crafting",
+      "display_name": "Bronze Key",
+      "inputs": {
+        "GOLD_KEY": 2,
+        "BRONZE_INGOT": 12
+      },
+      "outputs": {
+        "BRONZE_KEY": 1
+      },
+      "production_time": 10.0,
+      "building_type": "Assembler",
+      "required_research": "bronze_key_crafting",
+      "energy_consumption": 30,
+      "mana_consumption": 0.0,
+      "phase": 2,
+      "alternate_recipe": false
+    },
+    "chest_quick_forging": {
+      "id": "chest_quick_forging",
+      "display_name": "Quick-Forged Machines",
+      "inputs": {
+        "COMPONENT": 4,
+        "GOLD_COMPONENT": 1
+      },
+      "outputs": {
+        "ADVANCED_MACHINERY": 1
+      },
+      "production_time": 15.0,
+      "building_type": "Assembler",
+      "required_research": "chest_quick_forging",
+      "energy_consumption": 40,
+      "mana_consumption": 0.0,
+      "phase": 1,
+      "alternate_recipe": true
+    },
+    "copper_wire": {
+      "id": "copper_wire",
+      "display_name": "Copper Wire",
+      "inputs": {
+        "COPPER_INGOT": 2
+      },
+      "outputs": {
+        "COPPER_WIRE": 1
+      },
+      "production_time": 3.0,
+      "building_type": "Assembler",
+      "required_research": "copper_wire",
+      "energy_consumption": 12,
+      "mana_consumption": 0.0,
+      "phase": 2,
+      "alternate_recipe": false
+    },
+    "durable_housing": {
+      "id": "durable_housing",
+      "display_name": "Durable Housing",
+      "inputs": {
+        "BRONZE_CASING": 2,
+        "STEEL_COMPONENT": 2
+      },
+      "outputs": {
+        "DURABLE_HOUSING": 1
+      },
+      "production_time": 18.0,
+      "building_type": "Assembler",
+      "required_research": "durable_housing",
+      "energy_consumption": 32,
+      "mana_consumption": 0.0,
+      "phase": 2,
+      "alternate_recipe": false
+    },
+    "fortress_machinery": {
+      "id": "fortress_machinery",
+      "display_name": "Fortress Machinery",
+      "inputs": {
+        "ADVANCED_MACHINERY": 2,
+        "REINFORCED_PLATING": 3
+      },
+      "outputs": {
+        "FORTRESS_MACHINERY": 1
+      },
+      "production_time": 15.0,
+      "building_type": "Assembler",
+      "required_research": "fortress_machinery",
+      "energy_consumption": 30,
+      "mana_consumption": 0.0,
+      "phase": 2,
+      "alternate_recipe": false
+    },
+    "gold_component": {
+      "id": "gold_component",
+      "display_name": "Gold Component",
+      "inputs": {
+        "COMPONENT": 2,
+        "GOLD_INGOT": 4
+      },
+      "outputs": {
+        "GOLD_COMPONENT": 1
+      },
+      "production_time": 12.0,
+      "building_type": "Assembler",
+      "required_research": "gold_component_tech",
+      "energy_consumption": 20,
+      "mana_consumption": 0.0,
+      "phase": 1,
+      "alternate_recipe": false
+    },
+    "gold_key_crafting": {
+      "id": "gold_key_crafting",
+      "display_name": "Gold Key",
+      "inputs": {
+        "IRON_KEY": 2,
+        "GOLD_INGOT": 12
+      },
+      "outputs": {
+        "GOLD_KEY": 1
+      },
+      "production_time": 20.0,
+      "building_type": "Assembler",
+      "required_research": "gold_key_crafting",
+      "energy_consumption": 25,
+      "mana_consumption": 0.0,
+      "phase": 1,
+      "alternate_recipe": false
+    },
+    "harmonic_key_crafting": {
+      "id": "harmonic_key_crafting",
+      "display_name": "Harmonic Key",
+      "inputs": {
+        "HARMONIC_RESONATOR": 6,
+        "BRONZE_KEY": 2
+      },
+      "outputs": {
+        "HARMONIC_KEY": 1
+      },
+      "production_time": 25.0,
+      "building_type": "Assembler",
+      "required_research": "harmonic_key_crafting",
+      "energy_consumption": 40,
+      "mana_consumption": 5.0,
+      "phase": 2,
+      "alternate_recipe": false
+    },
+    "harmonic_resonator": {
+      "id": "harmonic_resonator",
+      "display_name": "Harmonic Resonator",
+      "inputs": {
+        "ARCANE_DEVICE": 1,
+        "ELECTRUM_INGOT": 3
+      },
+      "outputs": {
+        "HARMONIC_RESONATOR": 1
+      },
+      "production_time": 10.0,
+      "building_type": "Assembler",
+      "required_research": "harmonic_resonator",
+      "energy_consumption": 25,
+      "mana_consumption": 5.0,
+      "phase": 2,
+      "alternate_recipe": false
+    },
+    "iron_key": {
+      "id": "iron_key",
+      "display_name": "Iron Key",
+      "inputs": {
+        "INGOT": 12
+      },
+      "outputs": {
+        "IRON_KEY": 1
+      },
+      "production_time": 15.0,
+      "building_type": "Assembler",
+      "required_research": "",
+      "energy_consumption": 20,
+      "mana_consumption": 0.0,
+      "phase": 1,
+      "alternate_recipe": false
+    },
+    "master_component_crafting": {
+      "id": "master_component_crafting",
+      "display_name": "Master Component",
+      "inputs": {
+        "ARCANE_CRYSTAL": 1,
+        "ADVANCED_MACHINERY": 2,
+        "GOLD_COMPONENT": 1
+      },
+      "outputs": {
+        "MASTER_COMPONENT": 1
+      },
+      "production_time": 30.0,
+      "building_type": "Assembler",
+      "required_research": "master_crafting_techniques",
+      "energy_consumption": 35,
+      "mana_consumption": 0.0,
+      "phase": 1,
+      "alternate_recipe": false
+    },
+    "master_crafting": {
+      "id": "master_crafting",
+      "display_name": "Master Crafting",
+      "inputs": {
+        "GOLD_INGOT": 1
+      },
+      "outputs": {
+        "COMPONENT": 1
+      },
+      "production_time": 5.0,
+      "building_type": "Assembler",
+      "required_research": "master_crafting",
+      "energy_consumption": 10,
+      "mana_consumption": 0.0,
+      "phase": 1,
+      "alternate_recipe": true
+    },
+    "merchant_bronze_devices": {
+      "id": "merchant_bronze_devices",
+      "display_name": "Bronze Device",
+      "inputs": {
+        "ARCANE_CRYSTAL": 2,
+        "BRONZE_CASING": 5
+      },
+      "outputs": {
+        "ARCANE_DEVICE": 1
+      },
+      "production_time": 10.0,
+      "building_type": "Assembler",
+      "required_research": "merchant_bronze_devices",
+      "energy_consumption": 30,
+      "mana_consumption": 0.0,
+      "phase": 2,
+      "alternate_recipe": true
+    },
+    "merchant_bulk_components": {
+      "id": "merchant_bulk_components",
+      "display_name": "Bulk Components",
+      "inputs": {
+        "INGOT": 4,
+        "MAGIC_ESSENCE": 2
+      },
+      "outputs": {
+        "COMPONENT": 3
+      },
+      "production_time": 15.0,
+      "building_type": "Assembler",
+      "required_research": "merchant_bulk_components",
+      "energy_consumption": 25,
+      "mana_consumption": 0.0,
+      "phase": 1,
+      "alternate_recipe": true
+    },
+    "merchant_quenched_steel_plate": {
+      "id": "merchant_quenched_steel_plate",
+      "display_name": "Quenched Steel Plate",
+      "inputs": {
+        "STEEL_INGOT": 2,
+        "WATER": 1
+      },
+      "outputs": {
+        "STEEL_PLATE": 4
+      },
+      "production_time": 8.0,
+      "building_type": "Assembler",
+      "required_research": "merchant_quenched_steel_plate",
+      "energy_consumption": 18,
+      "mana_consumption": 0.0,
+      "phase": 2,
+      "alternate_recipe": true
+    },
+    "merchant_transmutation_key": {
+      "id": "merchant_transmutation_key",
+      "display_name": "Key Crafting",
+      "inputs": {
+        "INGOT": 3,
+        "MAGIC_ESSENCE": 3
+      },
+      "outputs": {
+        "IRON_KEY": 1
+      },
+      "production_time": 10.0,
+      "building_type": "Assembler",
+      "required_research": "merchant_transmutation_key",
+      "energy_consumption": 0,
+      "mana_consumption": 2.0,
+      "phase": 1,
+      "alternate_recipe": true
+    },
+    "purified_solvent": {
+      "id": "purified_solvent",
+      "display_name": "Purified Solvent",
+      "inputs": {
+        "FLUX": 2,
+        "WATER": 1
+      },
+      "outputs": {
+        "PURIFIED_SOLVENT": 1
+      },
+      "production_time": 3.0,
+      "building_type": "Assembler",
+      "required_research": "purified_solvent",
+      "energy_consumption": 20,
+      "mana_consumption": 0.0,
+      "phase": 2,
+      "alternate_recipe": false
+    },
+    "reinforced_plating": {
+      "id": "reinforced_plating",
+      "display_name": "Reinforced Plating",
+      "inputs": {
+        "FLUX": 2,
+        "STEEL_PLATE": 4
+      },
+      "outputs": {
+        "REINFORCED_PLATING": 1
+      },
+      "production_time": 6.0,
+      "building_type": "Assembler",
+      "required_research": "reinforced_plating",
+      "energy_consumption": 25,
+      "mana_consumption": 0.0,
+      "phase": 2,
+      "alternate_recipe": false
+    },
+    "specialized_component": {
+      "id": "specialized_component",
+      "display_name": "Specialized Component",
+      "inputs": {
+        "INGOT": 1,
+        "MAGIC_ESSENCE": 3
+      },
+      "outputs": {
+        "COMPONENT": 1
+      },
+      "production_time": 10.0,
+      "building_type": "Assembler",
+      "required_research": "specialized_components",
+      "energy_consumption": 7,
+      "mana_consumption": 0.0,
+      "phase": 1,
+      "alternate_recipe": false
+    },
+    "steel_component": {
+      "id": "steel_component",
+      "display_name": "Steel Component",
+      "inputs": {
+        "STEEL_INGOT": 4,
+        "GOLD_COMPONENT": 2
+      },
+      "outputs": {
+        "STEEL_COMPONENT": 1
+      },
+      "production_time": 10.0,
+      "building_type": "Assembler",
+      "required_research": "steel_component",
+      "energy_consumption": 28,
+      "mana_consumption": 0.0,
+      "phase": 2,
+      "alternate_recipe": false
+    },
+    "steel_plate": {
+      "id": "steel_plate",
+      "display_name": "Steel Plate",
+      "inputs": {
+        "STEEL_INGOT": 3
+      },
+      "outputs": {
+        "STEEL_PLATE": 1
+      },
+      "production_time": 6.0,
+      "building_type": "Assembler",
+      "required_research": "steel_plate",
+      "energy_consumption": 15,
+      "mana_consumption": 0.0,
+      "phase": 2,
+      "alternate_recipe": false
+    },
+    "ultra_component": {
+      "id": "ultra_component",
+      "display_name": "Ultra Component",
+      "inputs": {
+        "MASTER_COMPONENT": 2,
+        "ELECTRUM_INGOT": 4,
+        "PURIFIED_SOLVENT": 2
+      },
+      "outputs": {
+        "ULTRA_COMPONENT": 1
+      },
+      "production_time": 30.0,
+      "building_type": "Assembler",
+      "required_research": "ultra_component",
+      "energy_consumption": 40,
+      "mana_consumption": 0.0,
+      "phase": 2,
+      "alternate_recipe": false
+    },
+    "arcane_crystal_crushing": {
+      "id": "arcane_crystal_crushing",
+      "display_name": "Arcane Crushing",
+      "inputs": {
+        "ARCANE_CRYSTAL": 2
+      },
+      "outputs": {
+        "MAGIC_ESSENCE": 1
+      },
+      "production_time": 3.0,
+      "building_type": "Crusher",
+      "required_research": "arcane_crystal_crushing",
+      "energy_consumption": 10,
+      "mana_consumption": 0.0,
+      "phase": 2,
+      "alternate_recipe": true
+    },
+    "arcane_deconstruction": {
+      "id": "arcane_deconstruction",
+      "display_name": "Arcane Deconstruction",
+      "inputs": {},
+      "outputs": {},
+      "production_time": 3.0,
+      "building_type": "Crusher",
+      "required_research": "",
+      "energy_consumption": 10,
+      "mana_consumption": 0.0,
+      "phase": 1,
+      "alternate_recipe": false
+    },
+    "basic_ingot_crushing": {
+      "id": "basic_ingot_crushing",
+      "display_name": "Basic Ingot Crushing",
+      "inputs": {},
+      "outputs": {
+        "METAL_DUST": 1
+      },
+      "production_time": 3.0,
+      "building_type": "Crusher",
+      "required_research": "basic_ingot_crushing",
+      "energy_consumption": 30,
+      "mana_consumption": 0.0,
+      "phase": 3,
+      "alternate_recipe": false
+    },
+    "basic_limestone_crushing": {
+      "id": "basic_limestone_crushing",
+      "display_name": "Limestone Crushing",
+      "inputs": {
+        "LIMESTONE": 3
+      },
+      "outputs": {
+        "FLUX": 1
+      },
+      "production_time": 3.0,
+      "building_type": "Crusher",
+      "required_research": "",
+      "energy_consumption": 8,
+      "mana_consumption": 0.0,
+      "phase": 1,
+      "alternate_recipe": false
+    },
+    "chest_cinder_compression": {
+      "id": "chest_cinder_compression",
+      "display_name": "Cinder Compression",
+      "inputs": {
+        "CINDER": 4,
+        "FLUX": 1
+      },
+      "outputs": {
+        "COAL": 1
+      },
+      "production_time": 5.0,
+      "building_type": "Crusher",
+      "required_research": "chest_cinder_compression",
+      "energy_consumption": 5,
+      "mana_consumption": 0.0,
+      "phase": 2,
+      "alternate_recipe": true
+    },
+    "chest_key_smashing": {
+      "id": "chest_key_smashing",
+      "display_name": "Key Smashing",
+      "inputs": {
+        "IRON_KEY": 2
+      },
+      "outputs": {
+        "COMPONENT": 1
+      },
+      "production_time": 15.0,
+      "building_type": "Crusher",
+      "required_research": "chest_key_smashing",
+      "energy_consumption": 10,
+      "mana_consumption": 0.0,
+      "phase": 2,
+      "alternate_recipe": true
+    },
+    "coal_spiking": {
+      "id": "coal_spiking",
+      "display_name": "Coal Spiking",
+      "inputs": {
+        "ARCANE_CRYSTAL": 1,
+        "COAL": 2
+      },
+      "outputs": {
+        "CRYSTALLIZED_COAL": 2
+      },
+      "production_time": 5.0,
+      "building_type": "Crusher",
+      "required_research": "coal_spiking",
+      "energy_consumption": 0,
+      "mana_consumption": 5.0,
+      "phase": 2,
+      "alternate_recipe": false
+    },
+    "concentrated_energy": {
+      "id": "concentrated_energy",
+      "display_name": "Concentrated Energy",
+      "inputs": {
+        "CINDER": 2,
+        "REFINED_FUEL": 1
+      },
+      "outputs": {
+        "CONCENTRATED_ENERGY": 1
+      },
+      "production_time": 6.0,
+      "building_type": "Crusher",
+      "required_research": "concentrated_energy",
+      "energy_consumption": 10,
+      "mana_consumption": 0.0,
+      "phase": 2,
+      "alternate_recipe": false
+    },
+    "crystal_packing": {
+      "id": "crystal_packing",
+      "display_name": "Crystal Packing",
+      "inputs": {
+        "CRYSTAL_ORE": 2
+      },
+      "outputs": {
+        "CRYSTAL_INGOT": 2
+      },
+      "production_time": 5.0,
+      "building_type": "Crusher",
+      "required_research": "crystal_packing",
+      "energy_consumption": 15,
+      "mana_consumption": 0.0,
+      "phase": 3,
+      "alternate_recipe": false
+    },
+    "dust_slurry": {
+      "id": "dust_slurry",
+      "display_name": "Dust Slurry",
+      "inputs": {
+        "SLAG": 2,
+        "FLUX": 1
+      },
+      "outputs": {
+        "METAL_DUST": 1
+      },
+      "production_time": 3.0,
+      "building_type": "Crusher",
+      "required_research": "dust_slurry",
+      "energy_consumption": 8,
+      "mana_consumption": 0.0,
+      "phase": 2,
+      "alternate_recipe": false
+    },
+    "geode_crushing": {
+      "id": "geode_crushing",
+      "display_name": "Geode Crushing",
+      "inputs": {
+        "GEODE": 1
+      },
+      "outputs": {
+        "NONE": 1
+      },
+      "production_time": 5.0,
+      "building_type": "Crusher",
+      "required_research": "",
+      "energy_consumption": 40,
+      "mana_consumption": 0.0,
+      "phase": 1,
+      "alternate_recipe": false
+    },
+    "refined_fuel": {
+      "id": "refined_fuel",
+      "display_name": "Refined Fuel",
+      "inputs": {
+        "COAL": 1,
+        "OIL": 1
+      },
+      "outputs": {
+        "REFINED_FUEL": 1
+      },
+      "production_time": 5.0,
+      "building_type": "Crusher",
+      "required_research": "refined_fuel",
+      "energy_consumption": 10,
+      "mana_consumption": 0.0,
+      "phase": 2,
+      "alternate_recipe": false
+    },
+    "advanced_extraction": {
+      "id": "advanced_extraction",
+      "display_name": "Advanced Extraction",
+      "inputs": {},
+      "outputs": {
+        "NONE": 1
+      },
+      "production_time": 4.0,
+      "building_type": "Fluid Extractor",
+      "required_research": "advanced_extraction",
+      "energy_consumption": 15,
+      "mana_consumption": 0.0,
+      "phase": 2,
+      "alternate_recipe": false
+    },
+    "basic_extraction": {
+      "id": "basic_extraction",
+      "display_name": "Basic Extraction",
+      "inputs": {},
+      "outputs": {
+        "NONE": 1
+      },
+      "production_time": 5.0,
+      "building_type": "Fluid Extractor",
+      "required_research": "",
+      "energy_consumption": 10,
+      "mana_consumption": 0.0,
+      "phase": 1,
+      "alternate_recipe": false
+    },
+    "enriched_extraction": {
+      "id": "enriched_extraction",
+      "display_name": "Enriched Extraction",
+      "inputs": {},
+      "outputs": {
+        "NONE": 1
+      },
+      "production_time": 5.0,
+      "building_type": "Fluid Extractor",
+      "required_research": "merchant_enriched_extraction",
+      "energy_consumption": 12,
+      "mana_consumption": 0.0,
+      "phase": 2,
+      "alternate_recipe": true
+    },
+    "arcane_cannon_crafting": {
+      "id": "arcane_cannon_crafting",
+      "display_name": "Arcane Cannon",
+      "inputs": {
+        "ARCANE_CRYSTAL": 4,
+        "ADVANCED_MACHINERY": 4,
+        "ARCANE_DEVICE": 4,
+        "MANA_BOMB": 2
+      },
+      "outputs": {
+        "ARCANE_CANNON": 1
+      },
+      "production_time": 60.0,
+      "building_type": "Mana Forge",
+      "required_research": "advanced_siege_magic",
+      "energy_consumption": 0,
+      "mana_consumption": 35.0,
+      "phase": 1,
+      "alternate_recipe": false
+    },
+    "architect_bane": {
+      "id": "architect_bane",
+      "display_name": "Architect Bane",
+      "inputs": {
+        "SIEGE_CRYSTAL": 2,
+        "DURABLE_HOUSING": 6
+      },
+      "outputs": {
+        "ARCHITECT_BANE": 1
+      },
+      "production_time": 60.0,
+      "building_type": "Mana Forge",
+      "required_research": "architect_bane",
+      "energy_consumption": 10,
+      "mana_consumption": 150.0,
+      "phase": 2,
+      "alternate_recipe": false
+    },
+    "blessed_conduit": {
+      "id": "blessed_conduit",
+      "display_name": "Blessed Conduit",
+      "inputs": {
+        "MAGIC_ESSENCE": 8,
+        "SILVER_INGOT": 4
+      },
+      "outputs": {
+        "BLESSED_CONDUIT": 1
+      },
+      "production_time": 6.0,
+      "building_type": "Mana Forge",
+      "required_research": "blessed_conduit",
+      "energy_consumption": 0,
+      "mana_consumption": 9.0,
+      "phase": 2,
+      "alternate_recipe": false
+    },
+    "mana_bomb_crafting": {
+      "id": "mana_bomb_crafting",
+      "display_name": "Mana Bomb",
+      "inputs": {
+        "MAGIC_ESSENCE": 12,
+        "COMPONENT": 6
+      },
+      "outputs": {
+        "MANA_BOMB": 1
+      },
+      "production_time": 35.0,
+      "building_type": "Mana Forge",
+      "required_research": "siege_magic",
+      "energy_consumption": 0,
+      "mana_consumption": 4.0,
+      "phase": 1,
+      "alternate_recipe": false
+    },
+    "mana_forged_component": {
+      "id": "mana_forged_component",
+      "display_name": "Mana-Component",
+      "inputs": {
+        "INGOT": 2
+      },
+      "outputs": {
+        "COMPONENT": 1
+      },
+      "production_time": 8.0,
+      "building_type": "Mana Forge",
+      "required_research": "advanced_mana_forging",
+      "energy_consumption": 0,
+      "mana_consumption": 5.0,
+      "phase": 1,
+      "alternate_recipe": false
+    },
+    "mana_gold_transmutation": {
+      "id": "mana_gold_transmutation",
+      "display_name": "Gold Transmutation",
+      "inputs": {
+        "ORE": 3
+      },
+      "outputs": {
+        "GOLD_ORE": 1
+      },
+      "production_time": 5.0,
+      "building_type": "Mana Forge",
+      "required_research": "",
+      "energy_consumption": 0,
+      "mana_consumption": 2.0,
+      "phase": 1,
+      "alternate_recipe": false
+    },
+    "merchant_crystal_synthesis": {
+      "id": "merchant_crystal_synthesis",
+      "display_name": "Crystal Synthesis",
+      "inputs": {
+        "MAGIC_ESSENCE": 6
+      },
+      "outputs": {
+        "ARCANE_CRYSTAL": 1
+      },
+      "production_time": 15.0,
+      "building_type": "Mana Forge",
+      "required_research": "merchant_crystal_synthesis",
+      "energy_consumption": 0,
+      "mana_consumption": 8.0,
+      "phase": 1,
+      "alternate_recipe": true
+    },
+    "merchant_essence_purification": {
+      "id": "merchant_essence_purification",
+      "display_name": "Essence Purification",
+      "inputs": {
+        "MAGIC_ESSENCE": 2,
+        "COPPER_WIRE": 1
+      },
+      "outputs": {
+        "PURE_ESSENCE": 1
+      },
+      "production_time": 5.0,
+      "building_type": "Mana Forge",
+      "required_research": "merchant_essence_purification",
+      "energy_consumption": 0,
+      "mana_consumption": 2.5,
+      "phase": 2,
+      "alternate_recipe": true
+    },
+    "reality_rend": {
+      "id": "reality_rend",
+      "display_name": "Reality Rend",
+      "inputs": {
+        "SANCTIFIED_CORE": 4,
+        "CONCENTRATED_ENERGY": 4,
+        "WARD_BREAKER": 2,
+        "ULTRA_COMPONENT": 2
+      },
+      "outputs": {
+        "REALITY_REND": 1
+      },
+      "production_time": 120.0,
+      "building_type": "Mana Forge",
+      "required_research": "reality_rend",
+      "energy_consumption": 0,
+      "mana_consumption": 360.0,
+      "phase": 2,
+      "alternate_recipe": false
+    },
+    "sanctified_core": {
+      "id": "sanctified_core",
+      "display_name": "Sanctified Core",
+      "inputs": {
+        "BLESSED_CONDUIT": 4,
+        "HARMONIC_RESONATOR": 2
+      },
+      "outputs": {
+        "SANCTIFIED_CORE": 1
+      },
+      "production_time": 12.0,
+      "building_type": "Mana Forge",
+      "required_research": "sanctified_core",
+      "energy_consumption": 0,
+      "mana_consumption": 12.0,
+      "phase": 2,
+      "alternate_recipe": false
+    },
+    "siege_crystal_crafting": {
+      "id": "siege_crystal_crafting",
+      "display_name": "Siege Crystal",
+      "inputs": {
+        "ARCANE_CRYSTAL": 8,
+        "ARCANE_DEVICE": 4,
+        "MASTER_COMPONENT": 4,
+        "ARCANE_CANNON": 2
+      },
+      "outputs": {
+        "SIEGE_CRYSTAL": 1
+      },
+      "production_time": 120.0,
+      "building_type": "Mana Forge",
+      "required_research": "ultimate_siege_magic",
+      "energy_consumption": 0,
+      "mana_consumption": 240.0,
+      "phase": 1,
+      "alternate_recipe": false
+    },
+    "ward_breaker": {
+      "id": "ward_breaker",
+      "display_name": "Ward Breaker",
+      "inputs": {
+        "FORTRESS_MACHINERY": 6,
+        "BLESSED_CONDUIT": 8,
+        "ARCHITECT_BANE": 2
+      },
+      "outputs": {
+        "WARD_BREAKER": 1
+      },
+      "production_time": 120.0,
+      "building_type": "Mana Forge",
+      "required_research": "ward_breaker",
+      "energy_consumption": 0,
+      "mana_consumption": 240.0,
+      "phase": 2,
+      "alternate_recipe": false
+    },
+    "advanced_mining_arcane_crystal": {
+      "id": "advanced_mining_arcane_crystal",
+      "display_name": "Advanced Mining",
+      "inputs": {},
+      "outputs": {
+        "NONE": 1
+      },
+      "production_time": 2.4,
+      "building_type": "Miner",
+      "required_research": "advanced_mining",
+      "energy_consumption": 8,
+      "mana_consumption": 0.0,
+      "phase": 1,
+      "alternate_recipe": false
+    },
+    "basic_mining_ore": {
+      "id": "basic_mining_ore",
+      "display_name": "Basic Mining",
+      "inputs": {},
+      "outputs": {
+        "NONE": 1
+      },
+      "production_time": 3.0,
+      "building_type": "Miner",
+      "required_research": "",
+      "energy_consumption": 5,
+      "mana_consumption": 0.0,
+      "phase": 1,
+      "alternate_recipe": false
+    },
+    "chest_trace_metals": {
+      "id": "chest_trace_metals",
+      "display_name": "Trace Metals",
+      "inputs": {},
+      "outputs": {
+        "LIMESTONE": 2
+      },
+      "production_time": 5.0,
+      "building_type": "Miner",
+      "required_research": "chest_trace_metals",
+      "energy_consumption": 12,
+      "mana_consumption": 0.0,
+      "phase": 2,
+      "alternate_recipe": true
+    },
+    "coal_mining": {
+      "id": "coal_mining",
+      "display_name": "Coal Mining",
+      "inputs": {},
+      "outputs": {
+        "COAL": 2
+      },
+      "production_time": 4.0,
+      "building_type": "Miner",
+      "required_research": "coal_mining",
+      "energy_consumption": 8,
+      "mana_consumption": 0.0,
+      "phase": 1,
+      "alternate_recipe": false
+    },
+    "efficient_mining_arcane_crystal": {
+      "id": "efficient_mining_arcane_crystal",
+      "display_name": "Efficient Mining",
+      "inputs": {},
+      "outputs": {
+        "NONE": 2
+      },
+      "production_time": 4.5,
+      "building_type": "Miner",
+      "required_research": "efficient_mining",
+      "energy_consumption": 7,
+      "mana_consumption": 0.0,
+      "phase": 1,
+      "alternate_recipe": false
+    },
+    "enriched_mining": {
+      "id": "enriched_mining",
+      "display_name": "Enriched Mining",
+      "inputs": {},
+      "outputs": {
+        "ORE": 1
+      },
+      "production_time": 3.0,
+      "building_type": "Miner",
+      "required_research": "enriched_mining",
+      "energy_consumption": 6,
+      "mana_consumption": 0.0,
+      "phase": 1,
+      "alternate_recipe": true
+    },
+    "ultra_efficient_mining": {
+      "id": "ultra_efficient_mining",
+      "display_name": "Ultra-Efficient Mining",
+      "inputs": {},
+      "outputs": {
+        "NONE": 1
+      },
+      "production_time": 1.7,
+      "building_type": "Miner",
+      "required_research": "ultra_efficient_mining",
+      "energy_consumption": 10,
+      "mana_consumption": 0.0,
+      "phase": 2,
+      "alternate_recipe": true
+    },
+    "advanced_smelting": {
+      "id": "advanced_smelting",
+      "display_name": "Advanced Smelting",
+      "inputs": {
+        "ORE": 2
+      },
+      "outputs": {
+        "INGOT": 2
+      },
+      "production_time": 5.0,
+      "building_type": "Smelter",
+      "required_research": "advanced_smelting",
+      "energy_consumption": 10,
+      "mana_consumption": 0.0,
+      "phase": 1,
+      "alternate_recipe": false
+    },
+    "arcane_smelting": {
+      "id": "arcane_smelting",
+      "display_name": "Arcane Smelting",
+      "inputs": {
+        "SUNDROP": 1
+      },
+      "outputs": {
+        "GOLD_ORE": 1
+      },
+      "production_time": 5.0,
+      "building_type": "Smelter",
+      "required_research": "arcane_smelting",
+      "energy_consumption": 0,
+      "mana_consumption": 4.0,
+      "phase": 1,
+      "alternate_recipe": false
+    },
+    "basic_smelting": {
+      "id": "basic_smelting",
+      "display_name": "Basic Smelting",
+      "inputs": {
+        "ORE": 2
+      },
+      "outputs": {
+        "INGOT": 1
+      },
+      "production_time": 5.0,
+      "building_type": "Smelter",
+      "required_research": "",
+      "energy_consumption": 8,
+      "mana_consumption": 0.0,
+      "phase": 1,
+      "alternate_recipe": false
+    },
+    "blast_copper": {
+      "id": "blast_copper",
+      "display_name": "Blast Copper",
+      "inputs": {
+        "COPPER_ORE": 1
+      },
+      "outputs": {
+        "COPPER_INGOT": 2
+      },
+      "production_time": 6.0,
+      "building_type": "Smelter",
+      "required_research": "merchant_blast_copper",
+      "energy_consumption": 25,
+      "mana_consumption": 0.0,
+      "phase": 2,
+      "alternate_recipe": true
+    },
+    "blast_smelting": {
+      "id": "blast_smelting",
+      "display_name": "Blast Smelting",
+      "inputs": {
+        "ORE": 1
+      },
+      "outputs": {
+        "INGOT": 4
+      },
+      "production_time": 5.0,
+      "building_type": "Smelter",
+      "required_research": "blast_smelting",
+      "energy_consumption": 10,
+      "mana_consumption": 0.0,
+      "phase": 2,
+      "alternate_recipe": false
+    },
+    "blast_steel": {
+      "id": "blast_steel",
+      "display_name": "Blast Steel",
+      "inputs": {
+        "INGOT": 3,
+        "COAL": 1
+      },
+      "outputs": {
+        "STEEL_INGOT": 2
+      },
+      "production_time": 6.0,
+      "building_type": "Smelter",
+      "required_research": "blast_steel",
+      "energy_consumption": 25,
+      "mana_consumption": 0.0,
+      "phase": 2,
+      "alternate_recipe": false
+    },
+    "bronze_alloy": {
+      "id": "bronze_alloy",
+      "display_name": "Bronze Alloy",
+      "inputs": {
+        "COPPER_INGOT": 3,
+        "TIN_INGOT": 1
+      },
+      "outputs": {
+        "BRONZE_INGOT": 2
+      },
+      "production_time": 12.0,
+      "building_type": "Smelter",
+      "required_research": "bronze_alloy",
+      "energy_consumption": 30,
+      "mana_consumption": 6.0,
+      "phase": 2,
+      "alternate_recipe": false
+    },
+    "chest_copper_resmelting": {
+      "id": "chest_copper_resmelting",
+      "display_name": "Copper Resmelting",
+      "inputs": {
+        "FLUX": 1,
+        "METAL_DUST": 5
+      },
+      "outputs": {
+        "COPPER_INGOT": 1
+      },
+      "production_time": 3.0,
+      "building_type": "Smelter",
+      "required_research": "chest_copper_resmelting",
+      "energy_consumption": 10,
+      "mana_consumption": 0.0,
+      "phase": 2,
+      "alternate_recipe": true
+    },
+    "chest_gold_resmelting": {
+      "id": "chest_gold_resmelting",
+      "display_name": "Gold Resmelting",
+      "inputs": {
+        "METAL_DUST": 6
+      },
+      "outputs": {
+        "GOLD_INGOT": 1
+      },
+      "production_time": 3.0,
+      "building_type": "Smelter",
+      "required_research": "chest_gold_resmelting",
+      "energy_consumption": 15,
+      "mana_consumption": 0.0,
+      "phase": 3,
+      "alternate_recipe": false
+    },
+    "copper_smelting": {
+      "id": "copper_smelting",
+      "display_name": "Copper Smelting",
+      "inputs": {
+        "COPPER_ORE": 2
+      },
+      "outputs": {
+        "COPPER_INGOT": 1
+      },
+      "production_time": 5.0,
+      "building_type": "Smelter",
+      "required_research": "new_metallurgy",
+      "energy_consumption": 15,
+      "mana_consumption": 0.0,
+      "phase": 2,
+      "alternate_recipe": false
+    },
+    "efficient_smelting": {
+      "id": "efficient_smelting",
+      "display_name": "Efficient Smelting",
+      "inputs": {
+        "ORE": 2
+      },
+      "outputs": {
+        "INGOT": 3
+      },
+      "production_time": 6.2,
+      "building_type": "Smelter",
+      "required_research": "efficient_smelting",
+      "energy_consumption": 8,
+      "mana_consumption": 0.0,
+      "phase": 1,
+      "alternate_recipe": false
+    },
+    "electrum_alloy": {
+      "id": "electrum_alloy",
+      "display_name": "Electrum Alloy",
+      "inputs": {
+        "GOLD_INGOT": 2,
+        "SILVER_INGOT": 2
+      },
+      "outputs": {
+        "ELECTRUM_INGOT": 1
+      },
+      "production_time": 6.0,
+      "building_type": "Smelter",
+      "required_research": "electrum_alloy",
+      "energy_consumption": 15,
+      "mana_consumption": 6.0,
+      "phase": 2,
+      "alternate_recipe": false
+    },
+    "gold_ingot_smelting": {
+      "id": "gold_ingot_smelting",
+      "display_name": "Gold Ingot Smelting",
+      "inputs": {
+        "ORE": 1,
+        "GOLD_ORE": 2
+      },
+      "outputs": {
+        "GOLD_INGOT": 1
+      },
+      "production_time": 10.0,
+      "building_type": "Smelter",
+      "required_research": "gold_metallurgy",
+      "energy_consumption": 15,
+      "mana_consumption": 0.0,
+      "phase": 1,
+      "alternate_recipe": false
+    },
+    "ingot_resmelting": {
+      "id": "ingot_resmelting",
+      "display_name": "Ingot Resmelting",
+      "inputs": {
+        "METAL_DUST": 3
+      },
+      "outputs": {
+        "INGOT": 1
+      },
+      "production_time": 2.0,
+      "building_type": "Smelter",
+      "required_research": "ingot_resmelting",
+      "energy_consumption": 10,
+      "mana_consumption": 0.0,
+      "phase": 2,
+      "alternate_recipe": false
+    },
+    "merchant_advanced_gold_metallurgy": {
+      "id": "merchant_advanced_gold_metallurgy",
+      "display_name": "Pure Gold Smelting",
+      "inputs": {
+        "INGOT": 1,
+        "GOLD_ORE": 2
+      },
+      "outputs": {
+        "GOLD_INGOT": 3
+      },
+      "production_time": 12.0,
+      "building_type": "Smelter",
+      "required_research": "merchant_advanced_gold_metallurgy",
+      "energy_consumption": 20,
+      "mana_consumption": 0.0,
+      "phase": 2,
+      "alternate_recipe": true
+    },
+    "merchant_essence_infusion": {
+      "id": "merchant_essence_infusion",
+      "display_name": "Infused Ingots",
+      "inputs": {
+        "ORE": 2,
+        "MAGIC_ESSENCE": 1
+      },
+      "outputs": {
+        "INGOT": 3
+      },
+      "production_time": 6.0,
+      "building_type": "Smelter",
+      "required_research": "merchant_essence_infusion",
+      "energy_consumption": 0,
+      "mana_consumption": 2.0,
+      "phase": 1,
+      "alternate_recipe": true
+    },
+    "merchant_rapid_smelting": {
+      "id": "merchant_rapid_smelting",
+      "display_name": "Rapid Smelting",
+      "inputs": {
+        "ORE": 1
+      },
+      "outputs": {
+        "INGOT": 1
+      },
+      "production_time": 2.8,
+      "building_type": "Smelter",
+      "required_research": "merchant_rapid_smelting",
+      "energy_consumption": 4,
+      "mana_consumption": 0.0,
+      "phase": 1,
+      "alternate_recipe": true
+    },
+    "merchant_silver_resmelting": {
+      "id": "merchant_silver_resmelting",
+      "display_name": "Silver Resmelting",
+      "inputs": {
+        "METAL_DUST": 12
+      },
+      "outputs": {
+        "SILVER_INGOT": 1
+      },
+      "production_time": 3.0,
+      "building_type": "Smelter",
+      "required_research": "merchant_silver_resmelting",
+      "energy_consumption": 15,
+      "mana_consumption": 0.0,
+      "phase": 3,
+      "alternate_recipe": true
+    },
+    "silver_smelting": {
+      "id": "silver_smelting",
+      "display_name": "Silver Smelting",
+      "inputs": {
+        "SILVER_ORE": 2
+      },
+      "outputs": {
+        "SILVER_INGOT": 1
+      },
+      "production_time": 5.0,
+      "building_type": "Smelter",
+      "required_research": "silver_smelting",
+      "energy_consumption": 15,
+      "mana_consumption": 5.0,
+      "phase": 2,
+      "alternate_recipe": false
+    },
+    "steel_smelting": {
+      "id": "steel_smelting",
+      "display_name": "Steel Smelting",
+      "inputs": {
+        "INGOT": 1,
+        "COAL": 1
+      },
+      "outputs": {
+        "STEEL_INGOT": 1
+      },
+      "production_time": 6.0,
+      "building_type": "Smelter",
+      "required_research": "steel_smelting",
+      "energy_consumption": 10,
+      "mana_consumption": 0.0,
+      "phase": 2,
+      "alternate_recipe": false
+    },
+    "sun_smelting": {
+      "id": "sun_smelting",
+      "display_name": "Sun Smelting",
+      "inputs": {
+        "MAGIC_ESSENCE": 2,
+        "GOLD_ORE": 1
+      },
+      "outputs": {
+        "SUNDROP": 1
+      },
+      "production_time": 3.0,
+      "building_type": "Smelter",
+      "required_research": "sun_smelting",
+      "energy_consumption": 0,
+      "mana_consumption": 1.5,
+      "phase": 1,
+      "alternate_recipe": false
+    },
+    "tin_resmelting": {
+      "id": "tin_resmelting",
+      "display_name": "Tin Resmelting",
+      "inputs": {
+        "METAL_DUST": 5
+      },
+      "outputs": {
+        "TIN_INGOT": 1
+      },
+      "production_time": 3.0,
+      "building_type": "Smelter",
+      "required_research": "merchant_tin_resmelting",
+      "energy_consumption": 10,
+      "mana_consumption": 0.0,
+      "phase": 2,
+      "alternate_recipe": true
+    },
+    "tin_smelting": {
+      "id": "tin_smelting",
+      "display_name": "Tin Smelting",
+      "inputs": {
+        "TIN_ORE": 2
+      },
+      "outputs": {
+        "TIN_INGOT": 1
+      },
+      "production_time": 3.0,
+      "building_type": "Smelter",
+      "required_research": "new_metallurgy",
+      "energy_consumption": 3,
+      "mana_consumption": 0.0,
+      "phase": 2,
+      "alternate_recipe": false
+    },
+    "ultra_efficient_smelting": {
+      "id": "ultra_efficient_smelting",
+      "display_name": "Ultra-Efficient Smelting",
+      "inputs": {
+        "ORE": 1
+      },
+      "outputs": {
+        "INGOT": 3
+      },
+      "production_time": 5.0,
+      "building_type": "Smelter",
+      "required_research": "ultra_efficient_smelting",
+      "energy_consumption": 10,
+      "mana_consumption": 0.0,
+      "phase": 1,
+      "alternate_recipe": true
+    }
+  },
+  "resource_enum_map": {
+    "0": "NONE",
+    "1": "ORE",
+    "2": "INGOT",
+    "3": "MAGIC_ESSENCE",
+    "4": "COMPONENT",
+    "5": "SUNDROP",
+    "6": "GOLD_ORE",
+    "7": "IRON_KEY",
+    "8": "GOLD_INGOT",
+    "9": "GOLD_KEY",
+    "10": "ARCANE_CRYSTAL",
+    "11": "ADVANCED_MACHINERY",
+    "12": "ARCANE_DEVICE",
+    "13": "MASTER_COMPONENT",
+    "14": "MANA_BOMB",
+    "15": "ARCANE_CANNON",
+    "16": "SIEGE_CRYSTAL",
+    "17": "COAL",
+    "18": "CINDER",
+    "19": "COPPER_ORE",
+    "20": "TIN_ORE",
+    "21": "STEEL_INGOT",
+    "22": "COPPER_INGOT",
+    "23": "TIN_INGOT",
+    "24": "BRONZE_INGOT",
+    "25": "LIMESTONE",
+    "26": "SILVER_ORE",
+    "27": "SILVER_INGOT",
+    "28": "MITHRIL_ORE",
+    "29": "MITHRIL_INGOT",
+    "30": "CRYSTAL_ORE",
+    "31": "CRYSTAL_INGOT",
+    "32": "ADAMANTINE_ORE",
+    "33": "ADAMANTINE_INGOT",
+    "34": "VOIDSTONE_ORE",
+    "35": "VOIDSTEEL_INGOT",
+    "36": "STARFALL_ORE",
+    "37": "STARSTEEL_INGOT",
+    "38": "ELECTRUM_INGOT",
+    "39": "MITHRIL_ALLOY",
+    "40": "ETHEREAL_STEEL",
+    "41": "SLAG",
+    "42": "FLUX",
+    "43": "METAL_DUST",
+    "44": "CRYSTAL_POWDER",
+    "45": "RUNESTONE",
+    "46": "ENCHANTED_STEEL",
+    "47": "PURE_ESSENCE",
+    "48": "GOLD_COMPONENT",
+    "49": "CRYSTALLIZED_COAL",
+    "50": "CRYSTAL_KEY",
+    "51": "WATER",
+    "52": "BRONZE_CASING",
+    "53": "DURABLE_HOUSING",
+    "54": "REINFORCED_PLATING",
+    "55": "FORTRESS_MACHINERY",
+    "56": "BLESSED_CONDUIT",
+    "57": "HARMONIC_RESONATOR",
+    "58": "SANCTIFIED_CORE",
+    "59": "PURIFIED_SOLVENT",
+    "60": "REFINED_FUEL",
+    "61": "CONCENTRATED_ENERGY",
+    "62": "BRONZE_KEY",
+    "63": "HARMONIC_KEY",
+    "64": "ARCHITECT_BANE",
+    "65": "WARD_BREAKER",
+    "66": "REALITY_REND",
+    "67": "OIL",
+    "68": "CRYSTAL_WIRE",
+    "69": "ADAMANTINE_COMPONENT",
+    "70": "DIMENSIONAL_COMPONENT",
+    "71": "HYBRID_MATRIX",
+    "72": "CRYSTAL_ASSEMBLY",
+    "73": "TITAN_ASSEMBLY",
+    "74": "DIMENSIONAL_CONVERGENCE",
+    "75": "RUNIC_PLATING",
+    "76": "REFINED_AMALGAM",
+    "77": "ESSENCE_WASH",
+    "78": "VOID_KEY",
+    "79": "VOID_SPLITTER",
+    "80": "STAR_RENDER",
+    "81": "LEGION_ANNIHILATOR",
+    "82": "COPPER_WIRE",
+    "83": "STEEL_PLATE",
+    "84": "VOID_CUBES",
+    "85": "STELLAR_FUEL",
+    "86": "STEEL_COMPONENT",
+    "87": "ULTRA_COMPONENT",
+    "88": "GEODE",
+    "89": "VOID_COMPONENT",
+    "90": "VOID_CHAMBER",
+    "91": "STELLAR_COMPONENT",
+    "92": "RESONANT_CORE",
+    "93": "STELLAR_ASSEMBLY",
+    "94": "MITHRIL_COMPONENT",
+    "95": "ENHANCED_CORE",
+    "96": "ETHEREAL_ASSEMBLY",
+    "97": "RUNIC_MATRIX",
+    "98": "STAR_CORE",
+    "99": "QUANTUM_SYSTEM",
+    "100": "CELESTIAL_SYSTEM",
+    "101": "STAR_SYSTEM",
+    "102": "CELESTIAL_MATRIX",
+    "103": "ETERNAL_ASSEMBLY",
+    "104": "COSMIC_ASSEMBLY",
+    "105": "RADIANT_ASSEMBLY",
+    "106": "LEGION_FRAME",
+    "107": "LEGION_CORE",
+    "108": "LEGION_MATRIX",
+    "1000": "MOD_RESOURCE_1",
+    "1001": "MOD_RESOURCE_2",
+    "1002": "MOD_RESOURCE_3",
+    "1003": "MOD_RESOURCE_4",
+    "1004": "MOD_RESOURCE_5",
+    "1005": "MOD_RESOURCE_6",
+    "1006": "MOD_RESOURCE_7",
+    "1007": "MOD_RESOURCE_8",
+    "1008": "MOD_RESOURCE_9",
+    "1009": "MOD_RESOURCE_10",
+    "-999": "OVERFLOW"
+  },
+  "display_name_map": {
+    "ORE": "Ore",
+    "INGOT": "Ingot",
+    "MAGIC_ESSENCE": "Magic Essence",
+    "COMPONENT": "Component",
+    "SUNDROP": "Sundrop",
+    "GOLD_ORE": "Gold Ore",
+    "IRON_KEY": "Iron Key",
+    "GOLD_INGOT": "Gold Ingot",
+    "GOLD_KEY": "Gold Key",
+    "ARCANE_CRYSTAL": "Arcane Crystal",
+    "ADVANCED_MACHINERY": "Advanced Machinery",
+    "ARCANE_DEVICE": "Arcane Device",
+    "MASTER_COMPONENT": "Master Component",
+    "MANA_BOMB": "Mana Bomb",
+    "ARCANE_CANNON": "Arcane Cannon",
+    "SIEGE_CRYSTAL": "Siege Crystal",
+    "COAL": "Coal",
+    "CRYSTALLIZED_COAL": "Crystallized Coal",
+    "CINDER": "Cinder",
+    "GOLD_COMPONENT": "Gold Component",
+    "WATER": "Water",
+    "SILVER_ORE": "Silver Ore",
+    "LIMESTONE": "Limestone",
+    "FLUX": "Flux",
+    "ARCHITECT_BANE": "Architect's Bane",
+    "COPPER_ORE": "Copper Ore",
+    "TIN_ORE": "Tin Ore",
+    "STEEL_INGOT": "Steel Ingot",
+    "COPPER_INGOT": "Copper Ingot",
+    "TIN_INGOT": "Tin Ingot",
+    "BRONZE_INGOT": "Bronze Ingot",
+    "SILVER_INGOT": "Silver Ingot",
+    "ELECTRUM_INGOT": "Electrum Ingot",
+    "BRONZE_CASING": "Bronze Casing",
+    "DURABLE_HOUSING": "Durable Housing",
+    "REINFORCED_PLATING": "Reinforced Plating",
+    "FORTRESS_MACHINERY": "Fortress Machinery",
+    "BLESSED_CONDUIT": "Blessed Conduit",
+    "HARMONIC_RESONATOR": "Harmonic Resonator",
+    "SANCTIFIED_CORE": "Sanctified Core",
+    "PURIFIED_SOLVENT": "Purified Solvent",
+    "REFINED_FUEL": "Refined Fuel",
+    "CONCENTRATED_ENERGY": "Concentrated Energy",
+    "BRONZE_KEY": "Bronze Key",
+    "HARMONIC_KEY": "Harmonic Key",
+    "WARD_BREAKER": "Ward Breaker",
+    "REALITY_REND": "Reality Rend",
+    "OIL": "Oil",
+    "COPPER_WIRE": "Copper Wire",
+    "STEEL_PLATE": "Steel Plate",
+    "STEEL_COMPONENT": "Steel Component",
+    "SLAG": "Slag",
+    "ULTRA_COMPONENT": "Ultra Component",
+    "METAL_DUST": "Metal Dust",
+    "GEODE": "Geode",
+    "PURE_ESSENCE": "Pure Essence",
+    "CRYSTAL_ORE": "Crystal Ore",
+    "ADAMANTINE_ORE": "Adamantine Ore",
+    "VOIDSTONE_ORE": "Voidstone Ore",
+    "STARFALL_ORE": "Starfall Ore",
+    "RUNESTONE": "Runestone",
+    "CRYSTAL_POWDER": "Crystal Powder",
+    "MITHRIL_ORE": "Mithril Ore",
+    "ADAMANTINE_INGOT": "Adamantine Ingot",
+    "CRYSTAL_INGOT": "Crystal Ingot",
+    "MITHRIL_INGOT": "Mithril Ingot",
+    "MITHRIL_ALLOY": "Mithril Alloy",
+    "VOIDSTEEL_INGOT": "Voidsteel Ingot",
+    "STARSTEEL_INGOT": "Starsteel Ingot",
+    "ETHEREAL_STEEL": "Ethereal Steel",
+    "VOID_CUBES": "Void Cube",
+    "CRYSTAL_KEY": "Crystal Key",
+    "VOID_KEY": "Void Key",
+    "ENCHANTED_STEEL": "Enchanted Steel",
+    "TITAN_ASSEMBLY": "Titan Assembly",
+    "ESSENCE_WASH": "Essence Wash",
+    "DIMENSIONAL_CONVERGENCE": "Dimensional Convergence",
+    "CRYSTAL_WIRE": "Crystal Wire",
+    "ADAMANTINE_COMPONENT": "Adamantine Component",
+    "DIMENSIONAL_COMPONENT": "Dimensional Component",
+    "HYBRID_MATRIX": "Hybrid Matrix",
+    "CRYSTAL_ASSEMBLY": "Crystal Assembly",
+    "VOID_COMPONENT": "Void Component",
+    "VOID_CHAMBER": "Void Chamber",
+    "STELLAR_COMPONENT": "Stellar Component",
+    "RESONANT_CORE": "Resonant Core",
+    "STELLAR_ASSEMBLY": "Stellar Assembly",
+    "MITHRIL_COMPONENT": "Mithril Component",
+    "ENHANCED_CORE": "Enhanced Core",
+    "ETHEREAL_ASSEMBLY": "Ethereal Assembly",
+    "RUNIC_PLATING": "Runic Plating",
+    "RUNIC_MATRIX": "Runic Matrix",
+    "STAR_CORE": "Star Core",
+    "QUANTUM_SYSTEM": "Quantum System",
+    "CELESTIAL_SYSTEM": "Celestial System",
+    "STAR_SYSTEM": "Star System",
+    "CELESTIAL_MATRIX": "Celestial Matrix",
+    "ETERNAL_ASSEMBLY": "Eternal Assembly",
+    "COSMIC_ASSEMBLY": "Cosmic Assembly",
+    "RADIANT_ASSEMBLY": "Radiant Assembly",
+    "LEGION_FRAME": "Legion Frame",
+    "LEGION_CORE": "Legion Core",
+    "LEGION_MATRIX": "Legion Matrix",
+    "LEGION_ANNIHILATOR": "Legion Annihilator",
+    "VOID_SPLITTER": "Void Splitter",
+    "STAR_RENDER": "Star Render"
+  },
+  "building_enum_map": {
+    "MINER": "Miner",
+    "SMELTER": "Smelter",
+    "ASSEMBLER": "Assembler",
+    "MANA_FORGE": "Mana Forge",
+    "FLUID_EXTRACTOR": "Fluid Pump",
+    "CRUSHER": "Crusher"
+  },
+  "research_phase_map": {
+    "academy_arcane_cannon_mastery": 1,
+    "academy_architect_bane_mastery": 2,
+    "academy_mana_bomb_mastery": 1,
+    "academy_reality_rend_mastery": 2,
+    "academy_siege_crystal_mastery": 1,
+    "academy_star_render_mastery": 3,
+    "academy_void_splitter_mastery": 3,
+    "academy_ward_breaker_mastery": 2,
+    "advanced_alchemy": 1,
+    "advanced_automation": 1,
+    "advanced_components": 1,
+    "advanced_cultivation": 3,
+    "advanced_extraction": 2,
+    "advanced_highway": 2,
+    "advanced_logistics": 1,
+    "advanced_logistics_2": 2,
+    "ultimate_magical_storage": 3,
+    "advanced_mana_conversion": 2,
+    "advanced_mana_forging": 1,
+    "advanced_metallurgy": 2,
+    "advanced_mining": 1,
+    "advanced_module_tech": 2,
+    "advanced_packing": 2,
+    "advanced_power_systems": 1,
+    "advanced_siege_magic": 1,
+    "advanced_smelting": 1,
+    "arcane_componentry": 1,
+    "arcane_crystal_crushing": 2,
+    "arcane_engineering": 1,
+    "arcane_mining_technology": 1,
+    "arcane_reactor_technology": 1,
+    "arcane_smelting": 1,
+    "architecture_1": 1,
+    "architecture_2": 1,
+    "architecture_3": 2,
+    "architecture_4": 2,
+    "architect_bane": 2,
+    "banking_technology": 1,
+    "basic_alchemy": 1,
+    "basic_cultivation": 3,
+    "basic_ingot_crushing": 3,
+    "basic_magic": 1,
+    "basic_trading": 1,
+    "belt_highway": 2,
+    "black_magic": 3,
+    "blast_component": 2,
+    "blast_smelting": 2,
+    "blast_steel": 2,
+    "blessed_conduit": 2,
+    "bridge_engineering": 1,
+    "bronze_alloy": 2,
+    "bronze_casing": 2,
+    "bronze_key_crafting": 2,
+    "building_enhancement_4": 2,
+    "building_enhancement_5": 3,
+    "chest_cinder_compression": 2,
+    "chest_copper_resmelting": 2,
+    "chest_gold_resmelting": 3,
+    "chest_key_smashing": 2,
+    "chest_merchants_call": 2,
+    "chest_quick_forging": 1,
+    "chest_trace_metals": 2,
+    "chromatic_alchemy": 1,
+    "climate_control_tech": 2,
+    "coal_mining": 1,
+    "coal_spiking": 2,
+    "component_crafting": 1,
+    "concentrated_energy": 2,
+    "conveyor_efficiency_1": 1,
+    "conveyor_efficiency_10": 3,
+    "conveyor_efficiency_2": 1,
+    "conveyor_efficiency_3": 1,
+    "conveyor_efficiency_4": 1,
+    "conveyor_efficiency_5": 1,
+    "conveyor_efficiency_6": 1,
+    "conveyor_efficiency_7": 2,
+    "conveyor_efficiency_8": 2,
+    "conveyor_efficiency_9": 2,
+    "copper_wire": 2,
+    "crystal_packing": 3,
+    "durable_housing": 2,
+    "dust_slurry": 2,
+    "efficient_mana_conversion": 2,
+    "efficient_mining": 1,
+    "efficient_smelting": 1,
+    "electrum_alloy": 2,
+    "elevator_bridge_technology": 1,
+    "enlightened_alchemy": 3,
+    "enriched_mining": 1,
+    "essence_efficiency": 1,
+    "extended_highway_range": 2,
+    "fluid_technology": 2,
+    "fortress_machinery": 2,
+    "golden_harvest": 2,
+    "gold_component_tech": 1,
+    "gold_key_crafting": 1,
+    "gold_metallurgy": 1,
+    "harmonic_key_crafting": 2,
+    "harmonic_resonator": 2,
+    "hydro_engineering": 1,
+    "improved_trade": 1,
+    "industrial_alchemy": 2,
+    "ingot_resmelting": 2,
+    "magical_alchemy": 2,
+    "magical_storage": 1,
+    "magic_trading": 1,
+    "mana_battery_expansion": 2,
+    "mana_conversion": 1,
+    "mana_forging": 1,
+    "mana_storage": 2,
+    "maritime_trade": 2,
+    "master_crafting": 1,
+    "master_crafting_techniques": 1,
+    "merchant_advanced_gold_metallurgy": 2,
+    "merchant_alternate_machinery": 2,
+    "merchant_blast_copper": 2,
+    "merchant_bronze_devices": 2,
+    "merchant_bulk_components": 1,
+    "merchant_crystal_synthesis": 1,
+    "merchant_enriched_extraction": 2,
+    "merchant_essence_infusion": 1,
+    "merchant_essence_purification": 2,
+    "merchant_quenched_steel_plate": 2,
+    "merchant_rapid_smelting": 1,
+    "merchant_silver_resmelting": 3,
+    "merchant_submerged_mining": 2,
+    "merchant_tin_resmelting": 2,
+    "merchant_transmutation_alchemy": 2,
+    "merchant_transmutation_key": 1,
+    "module_tech": 2,
+    "new_metallurgy": 2,
+    "overflow_routing": 1,
+    "power_optimization": 1,
+    "protective_wards": 1,
+    "purified_solvent": 2,
+    "quantitative_logistics": 2,
+    "reality_rend": 2,
+    "refined_fuel": 2,
+    "reinforced_plating": 2,
+    "resource_refinement": 1,
+    "sanctified_core": 2,
+    "scalable_alchemy": 2,
+    "siege_magic": 1,
+    "silver_smelting": 2,
+    "solar_energy": 1,
+    "solar_power": 1,
+    "solar_resonator_technology": 1,
+    "specialized_components": 1,
+    "speed_module_tech": 2,
+    "steel_component": 2,
+    "steel_plate": 2,
+    "steel_smelting": 2,
+    "sun_smelting": 1,
+    "superior_alchemy": 2,
+    "throughput_control": 1,
+    "trade_routes": 2,
+    "advanced_magical_storage": 2,
+    "ultimate_module_tech": 3,
+    "ultimate_siege_magic": 1,
+    "ultra_component": 2,
+    "ultra_efficient_mining": 2,
+    "ultra_efficient_smelting": 1,
+    "vertical_logistics": 1,
+    "vertical_logistics_2": 1,
+    "ward_breaker": 2,
+    "waste_recycling": 1
+  }
+}
