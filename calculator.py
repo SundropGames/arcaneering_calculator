@@ -273,7 +273,8 @@ class RecipeParser:
     return instance
 
 class ProductionCalculator:
-  BASE_RESOURCES = {'ORE', 'MAGIC_ESSENCE', 'SUNDROP', 'GOLD_ORE', 'ARCANE_CRYSTAL', 'COAL', 'CINDER', 'WATER', 'OIL', 'LIMESTONE', 'COPPER_ORE', 'TIN_ORE', 'SLAG', 'SILVER_ORE', 'CRYSTAL_ORE'}
+  BASE_RESOURCES = {'ORE', 'MAGIC_ESSENCE', 'SUNDROP', 'GOLD_ORE', 'ARCANE_CRYSTAL', 'COAL', 'CINDER', 'WATER', 'OIL', 'LIMESTONE',
+                    'COPPER_ORE', 'TIN_ORE', 'SLAG', 'SILVER_ORE', 'CRYSTAL_ORE', 'ADAMANTINE_ORE', 'VOIDSTONE_ORE'}
   
   def __init__(self, recipes: Dict[str, Recipe]):
     self.recipes = recipes
@@ -309,7 +310,7 @@ class ProductionCalculator:
       for input_resource in recipe.inputs.keys():
         if input_resource not in self.BASE_RESOURCES:
           input_cost = self._get_raw_cost_recursive(input_resource, max_phase, allow_alternate, set())
-          if input_cost >= 999.0:
+          if input_cost >= 9999.0:
             all_inputs_producible = False
             break
       if all_inputs_producible:
@@ -327,7 +328,7 @@ class ProductionCalculator:
           if input_resource in self.BASE_RESOURCES:
             raw_cost += input_per_output
           else:
-            input_cost = self._get_raw_cost_recursive(input_resource, max_phase, allow_alternate, set())
+            input_cost = self._get_raw_cost_recursive(input_resource, max_phase, allow_alternate, set(), allowed_alternates)
             raw_cost += input_per_output * input_cost
         if raw_cost < best_raw_cost:
           best_raw_cost = raw_cost
@@ -335,17 +336,17 @@ class ProductionCalculator:
       return best_recipe
     return valid_candidates[0]
 
-  def _get_raw_cost_recursive(self, resource: str, max_phase: int, allow_alternate: bool, visited: Set[str]) -> float:
+  def _get_raw_cost_recursive(self, resource: str, max_phase: int, allow_alternate: bool, visited: Set[str], allowed_alternates: Optional[List[str]] = None) -> float:
     """Recursively calculate the raw resource cost to produce 1 unit of a resource"""
     if resource in self.BASE_RESOURCES:
       return 1.0
     if resource in visited:
-      return 1000.0
+      return 999999.0
     visited.add(resource)
-    recipe = self.get_best_recipe(resource, max_phase, prefer_efficient=False, allow_alternate=allow_alternate, allowed_alternates=None)
+    recipe = self.get_best_recipe(resource, max_phase, prefer_efficient=False, allow_alternate=allow_alternate, allowed_alternates=allowed_alternates)
     if not recipe:
       visited.remove(resource)
-      return 1000.0
+      return 999999.0
     output_amount = recipe.outputs.get(resource, 1)
     total_cost = 0.0
     valid_inputs = 0
@@ -354,11 +355,11 @@ class ProductionCalculator:
         continue
       valid_inputs += 1
       input_per_output = input_amount / output_amount
-      input_cost = self._get_raw_cost_recursive(input_resource, max_phase, allow_alternate, visited.copy())
+      input_cost = self._get_raw_cost_recursive(input_resource, max_phase, allow_alternate, visited.copy(), allowed_alternates)
       total_cost += input_per_output * input_cost
     if valid_inputs == 0:
       visited.remove(resource)
-      return 1000.0
+      return 999999.0
     visited.remove(resource)
     return total_cost
 

@@ -1,6 +1,24 @@
 {
-  "timestamp": "2026-02-10T21:46:54.634376",
+  "timestamp": "2026-02-12T22:44:46.968509",
   "recipes": {
+    "adamantine_component": {
+      "id": "adamantine_component",
+      "display_name": "Adamantine Component",
+      "inputs": {
+        "COMPONENT": 4,
+        "ADAMANTINE_INGOT": 2
+      },
+      "outputs": {
+        "ADAMANTINE_COMPONENT": 1
+      },
+      "production_time": 6.0,
+      "building_type": "Assembler",
+      "required_research": "adamantine_ingot",
+      "energy_consumption": 15,
+      "mana_consumption": 0.0,
+      "phase": 1,
+      "alternate_recipe": false
+    },
     "advanced_component": {
       "id": "advanced_component",
       "display_name": "Advanced Component",
@@ -162,6 +180,24 @@
       "phase": 2,
       "alternate_recipe": false
     },
+    "chest_quenched_bronze_casing": {
+      "id": "chest_quenched_bronze_casing",
+      "display_name": "Quenched Bronze Casing",
+      "inputs": {
+        "BRONZE_INGOT": 2,
+        "WATER": 1
+      },
+      "outputs": {
+        "BRONZE_CASING": 3
+      },
+      "production_time": 10.0,
+      "building_type": "Assembler",
+      "required_research": "chest_quenched_bronze_casing",
+      "energy_consumption": 5,
+      "mana_consumption": 0.0,
+      "phase": 2,
+      "alternate_recipe": true
+    },
     "chest_quick_forging": {
       "id": "chest_quick_forging",
       "display_name": "Quick-Forged Machines",
@@ -195,6 +231,42 @@
       "energy_consumption": 12,
       "mana_consumption": 0.0,
       "phase": 2,
+      "alternate_recipe": false
+    },
+    "crystal_wire": {
+      "id": "crystal_wire",
+      "display_name": "Crystal Wire",
+      "inputs": {
+        "CRYSTAL_INGOT": 3
+      },
+      "outputs": {
+        "CRYSTAL_WIRE": 1
+      },
+      "production_time": 3.0,
+      "building_type": "Assembler",
+      "required_research": "crystal_wire",
+      "energy_consumption": 5,
+      "mana_consumption": 3.0,
+      "phase": 3,
+      "alternate_recipe": false
+    },
+    "dimensional_component": {
+      "id": "dimensional_component",
+      "display_name": "Dimensional Component",
+      "inputs": {
+        "MASTER_COMPONENT": 1,
+        "CRYSTAL_WIRE": 2,
+        "ADAMANTINE_COMPONENT": 2
+      },
+      "outputs": {
+        "DIMENSIONAL_COMPONENT": 1
+      },
+      "production_time": 6.0,
+      "building_type": "Assembler",
+      "required_research": "dimensional_component",
+      "energy_consumption": 25,
+      "mana_consumption": 0.0,
+      "phase": 3,
       "alternate_recipe": false
     },
     "durable_housing": {
@@ -363,7 +435,7 @@
       "display_name": "Bronze Device",
       "inputs": {
         "ARCANE_CRYSTAL": 2,
-        "BRONZE_CASING": 5
+        "BRONZE_CASING": 3
       },
       "outputs": {
         "ARCANE_DEVICE": 1
@@ -741,6 +813,23 @@
       "phase": 2,
       "alternate_recipe": false
     },
+    "void_cubes": {
+      "id": "void_cubes",
+      "display_name": "Void Cubes",
+      "inputs": {
+        "VOIDSTEEL_INGOT": 3
+      },
+      "outputs": {
+        "VOID_CUBES": 1
+      },
+      "production_time": 4.0,
+      "building_type": "Crusher",
+      "required_research": "void_cubes",
+      "energy_consumption": 20,
+      "mana_consumption": 0.0,
+      "phase": 3,
+      "alternate_recipe": false
+    },
     "advanced_extraction": {
       "id": "advanced_extraction",
       "display_name": "Advanced Extraction",
@@ -929,6 +1018,24 @@
       "phase": 2,
       "alternate_recipe": true
     },
+    "merchant_pure_mana_bomb": {
+      "id": "merchant_pure_mana_bomb",
+      "display_name": "Pure Mana Bomb",
+      "inputs": {
+        "PURE_ESSENCE": 4,
+        "STEEL_COMPONENT": 1
+      },
+      "outputs": {
+        "MANA_BOMB": 4
+      },
+      "production_time": 10.0,
+      "building_type": "Mana Forge",
+      "required_research": "merchant_pure_mana_bomb",
+      "energy_consumption": 0,
+      "mana_consumption": 5.0,
+      "phase": 2,
+      "alternate_recipe": true
+    },
     "reality_rend": {
       "id": "reality_rend",
       "display_name": "Reality Rend",
@@ -1111,6 +1218,44 @@
       "phase": 2,
       "alternate_recipe": true
     },
+    "hybrid_matrix": {
+      "id": "hybrid_matrix",
+      "display_name": "Hybrid Matrix",
+      "inputs": {
+        "BRONZE_CASING": 2,
+        "CRYSTAL_WIRE": 2,
+        "ADAMANTINE_COMPONENT": 2,
+        "STEEL_COMPONENT": 1
+      },
+      "outputs": {
+        "HYBRID_MATRIX": 1
+      },
+      "production_time": 12.0,
+      "building_type": "Oilworks",
+      "required_research": "black_magic",
+      "energy_consumption": 15,
+      "mana_consumption": 0.0,
+      "phase": 3,
+      "alternate_recipe": false
+    },
+    "adamantine_smelting": {
+      "id": "adamantine_smelting",
+      "display_name": "Adamantine Smelting",
+      "inputs": {
+        "ADAMANTINE_ORE": 1,
+        "FLUX": 1
+      },
+      "outputs": {
+        "ADAMANTINE_INGOT": 1
+      },
+      "production_time": 5.0,
+      "building_type": "Smelter",
+      "required_research": "adamantine_smelting",
+      "energy_consumption": 20,
+      "mana_consumption": 0.0,
+      "phase": 3,
+      "alternate_recipe": false
+    },
     "advanced_smelting": {
       "id": "advanced_smelting",
       "display_name": "Advanced Smelting",
@@ -1266,6 +1411,24 @@
       "mana_consumption": 0.0,
       "phase": 3,
       "alternate_recipe": false
+    },
+    "chest_pure_silver_smelting": {
+      "id": "chest_pure_silver_smelting",
+      "display_name": "Pure Silver Smelting",
+      "inputs": {
+        "SILVER_ORE": 1,
+        "FLUX": 1
+      },
+      "outputs": {
+        "SILVER_INGOT": 2
+      },
+      "production_time": 3.0,
+      "building_type": "Smelter",
+      "required_research": "chest_pure_silver_smelting",
+      "energy_consumption": 15,
+      "mana_consumption": 4.0,
+      "phase": 2,
+      "alternate_recipe": true
     },
     "copper_smelting": {
       "id": "copper_smelting",
@@ -1527,6 +1690,24 @@
       "mana_consumption": 0.0,
       "phase": 1,
       "alternate_recipe": true
+    },
+    "void_smelting": {
+      "id": "void_smelting",
+      "display_name": "Void Smelting",
+      "inputs": {
+        "VOIDSTONE_ORE": 1,
+        "CRYSTALLIZED_COAL": 1
+      },
+      "outputs": {
+        "VOIDSTEEL_INGOT": 1
+      },
+      "production_time": 5.0,
+      "building_type": "Smelter",
+      "required_research": "void_smelting",
+      "energy_consumption": 10,
+      "mana_consumption": 5.0,
+      "phase": 3,
+      "alternate_recipe": false
     }
   },
   "resource_enum_map": {
@@ -1776,6 +1957,8 @@
     "academy_star_render_mastery": 3,
     "academy_void_splitter_mastery": 3,
     "academy_ward_breaker_mastery": 2,
+    "adamantine_component": 3,
+    "adamantine_smelting": 3,
     "advanced_alchemy": 1,
     "advanced_automation": 1,
     "advanced_components": 1,
@@ -1828,6 +2011,8 @@
     "chest_gold_resmelting": 3,
     "chest_key_smashing": 2,
     "chest_merchants_call": 2,
+    "chest_pure_silver_smelting": 2,
+    "chest_quenched_bronze_casing": 2,
     "chest_quick_forging": 1,
     "chest_trace_metals": 2,
     "chromatic_alchemy": 1,
@@ -1848,6 +2033,8 @@
     "conveyor_efficiency_9": 2,
     "copper_wire": 2,
     "crystal_packing": 3,
+    "crystal_wire": 3,
+    "dimensional_component": 3,
     "durable_housing": 2,
     "dust_slurry": 2,
     "efficient_mana_conversion": 2,
@@ -1890,6 +2077,7 @@
     "merchant_enriched_extraction": 2,
     "merchant_essence_infusion": 1,
     "merchant_essence_purification": 2,
+    "merchant_pure_mana_bomb": 2,
     "merchant_quenched_steel_plate": 2,
     "merchant_rapid_smelting": 1,
     "merchant_silver_resmelting": 3,
@@ -1932,6 +2120,8 @@
     "ultra_efficient_smelting": 1,
     "vertical_logistics": 1,
     "vertical_logistics_2": 1,
+    "void_cubes": 3,
+    "void_smelting": 3,
     "ward_breaker": 2,
     "waste_recycling": 1
   }

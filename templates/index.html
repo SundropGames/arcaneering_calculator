@@ -293,6 +293,22 @@
         }
         div.style.left = pos.x + 'px';
         div.style.top = pos.y + 'px';
+        div.addEventListener('mouseenter', () => {
+          const edges = container.querySelectorAll(`[data-from-node="${key}"]`);
+          edges.forEach(edge => {
+            edge.setAttribute('marker-end', 'url(#arrowhead-hover)');
+            edge.style.strokeWidth = '4';
+            edge.style.stroke = '#ffd700';
+          });
+        });
+        div.addEventListener('mouseleave', () => {
+          const edges = container.querySelectorAll(`[data-from-node="${key}"]`);
+          edges.forEach(edge => {
+            edge.setAttribute('marker-end', 'url(#arrowhead)');
+            edge.style.strokeWidth = '2';
+            edge.style.stroke = '#cbd5e0';
+          });
+        });
         container.appendChild(div);
       }
     }
@@ -414,6 +430,7 @@
           path.setAttribute('class', 'edge-line');
           path.setAttribute('fill', 'none');
           path.setAttribute('marker-end', 'url(#arrowhead)');
+          path.setAttribute('data-from-node', edge.from);
           path.addEventListener('mouseenter', () => {
             path.setAttribute('marker-end', 'url(#arrowhead-hover)');
           });
@@ -449,6 +466,7 @@
           line.setAttribute('y2', y2);
           line.setAttribute('class', 'edge-line');
           line.setAttribute('marker-end', 'url(#arrowhead)');
+          line.setAttribute('data-from-node', edge.from);
           line.addEventListener('mouseenter', () => {
             line.setAttribute('marker-end', 'url(#arrowhead-hover)');
           });

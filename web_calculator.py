@@ -83,9 +83,9 @@ def build_graph_view(root_node):
 def index():
 	resources = calculator.get_resource_list()
 	if not ALLOW_RELOAD:  # Production mode - filter to Act I only
-		resources = [r for r in resources if r != 'NONE' and any(recipe.phase <= 1 for recipe in calculator.recipes_by_output.get(r, []))]
+		resources = [r for r in resources if r != 'NONE' and r not in calculator.BASE_RESOURCES and any(recipe.phase <= 1 and recipe.building_type != 'Crusher' for recipe in calculator.recipes_by_output.get(r, []))]
 	else:  # Local dev mode - show all
-		resources = [r for r in resources if r != 'NONE']
+		resources = [r for r in resources if r != 'NONE' and r not in calculator.BASE_RESOURCES]
 	resource_display = [(res, calculator.get_display_name(res)) for res in resources]
 	return render_template('index.html', resources=resource_display, allow_reload=ALLOW_RELOAD, snapshot_timestamp=snapshot_timestamp)
 
