@@ -5,6 +5,13 @@ from collections import defaultdict, deque
 from typing import Dict, List, Set, Tuple, Optional
 from dataclasses import dataclass, field
 
+SNAPSHOT_PATH = os.path.join(os.path.dirname(__file__), 'recipes_snapshot.json')
+try:
+  from config import GAME_DATA_PATH
+  base_path = GAME_DATA_PATH
+except ImportError:
+  base_path = None
+
 @dataclass
 class Recipe:
   id: str
@@ -85,7 +92,8 @@ class RecipeParser:
       "ASSEMBLER": "Assembler",
       "MANA_FORGE": "Mana Forge",
       "FLUID_EXTRACTOR": "Fluid Pump",
-      "CRUSHER": "Crusher"
+      "CRUSHER": "Crusher",
+      "OILWORKS": "Oilworks"
     }
 
   def _load_research_phases(self):
@@ -493,11 +501,11 @@ def print_production_chain(node: ProductionNode, indent: int = 0):
     print()
 
 def main():
-  # Point this to your game's data folder
-  base_path = r"C:\Users\Daniel\Documents\magicfactory\data"
-  
   # Parse recipes
-  parser = RecipeParser(base_path)
+  if base_path:
+    parser = RecipeParser(base_path)
+  else:
+    parser = RecipeParser.from_snapshot(SNAPSHOT_PATH)
   
   if not parser.recipes:
     print("No recipes found! Check your base_path.")

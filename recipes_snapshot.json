@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-02-12T22:44:46.968509",
+  "timestamp": "2026-02-13T13:17:25.166502",
   "recipes": {
     "adamantine_component": {
       "id": "adamantine_component",
@@ -606,6 +606,23 @@
       "building_type": "Assembler",
       "required_research": "ultra_component",
       "energy_consumption": 40,
+      "mana_consumption": 0.0,
+      "phase": 2,
+      "alternate_recipe": false
+    },
+    "advanced_limestone_crushing": {
+      "id": "advanced_limestone_crushing",
+      "display_name": "Advanced Limestone Crushing",
+      "inputs": {
+        "LIMESTONE": 1
+      },
+      "outputs": {
+        "FLUX": 1
+      },
+      "production_time": 3.0,
+      "building_type": "Crusher",
+      "required_research": "advanced_limestone_crushing",
+      "energy_consumption": 20,
       "mana_consumption": 0.0,
       "phase": 2,
       "alternate_recipe": false
@@ -1946,7 +1963,8 @@
     "ASSEMBLER": "Assembler",
     "MANA_FORGE": "Mana Forge",
     "FLUID_EXTRACTOR": "Fluid Pump",
-    "CRUSHER": "Crusher"
+    "CRUSHER": "Crusher",
+    "OILWORKS": "Oilworks"
   },
   "research_phase_map": {
     "academy_arcane_cannon_mastery": 1,
@@ -1965,6 +1983,7 @@
     "advanced_cultivation": 3,
     "advanced_extraction": 2,
     "advanced_highway": 2,
+    "advanced_limestone_crushing": 2,
     "advanced_logistics": 1,
     "advanced_logistics_2": 2,
     "ultimate_magical_storage": 3,
