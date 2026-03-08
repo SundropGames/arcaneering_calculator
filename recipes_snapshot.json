@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-02-13T13:17:25.166502",
+  "timestamp": "2026-03-05T16:02:25.870036",
   "recipes": {
     "adamantine_component": {
       "id": "adamantine_component",
@@ -180,6 +180,24 @@
       "phase": 2,
       "alternate_recipe": false
     },
+    "chest_elesteel_component": {
+      "id": "chest_elesteel_component",
+      "display_name": "EleSteel Component",
+      "inputs": {
+        "ELECTRUM_INGOT": 2,
+        "STEEL_PLATE": 2
+      },
+      "outputs": {
+        "STEEL_COMPONENT": 1
+      },
+      "production_time": 5.0,
+      "building_type": "Assembler",
+      "required_research": "chest_elesteel_component",
+      "energy_consumption": 15,
+      "mana_consumption": 0.0,
+      "phase": 3,
+      "alternate_recipe": true
+    },
     "chest_quenched_bronze_casing": {
       "id": "chest_quenched_bronze_casing",
       "display_name": "Quenched Bronze Casing",
@@ -196,6 +214,24 @@
       "energy_consumption": 5,
       "mana_consumption": 0.0,
       "phase": 2,
+      "alternate_recipe": true
+    },
+    "chest_quenched_housing": {
+      "id": "chest_quenched_housing",
+      "display_name": "Quenched Housing",
+      "inputs": {
+        "BRONZE_CASING": 2,
+        "ADAMANTINE_COMPONENT": 1
+      },
+      "outputs": {
+        "DURABLE_HOUSING": 2
+      },
+      "production_time": 12.0,
+      "building_type": "Assembler",
+      "required_research": "chest_quenched_housing",
+      "energy_consumption": 5,
+      "mana_consumption": 0.0,
+      "phase": 3,
       "alternate_recipe": true
     },
     "chest_quick_forging": {
@@ -231,6 +267,43 @@
       "energy_consumption": 12,
       "mana_consumption": 0.0,
       "phase": 2,
+      "alternate_recipe": false
+    },
+    "crystal_assembly": {
+      "id": "crystal_assembly",
+      "display_name": "Crystal Assembly",
+      "inputs": {
+        "COMPONENT": 2,
+        "ARCANE_DEVICE": 1,
+        "CRYSTAL_WIRE": 3
+      },
+      "outputs": {
+        "CRYSTAL_ASSEMBLY": 1
+      },
+      "production_time": 10.0,
+      "building_type": "Assembler",
+      "required_research": "crystal_assembly",
+      "energy_consumption": 15,
+      "mana_consumption": 0.0,
+      "phase": 3,
+      "alternate_recipe": false
+    },
+    "crystal_key": {
+      "id": "crystal_key",
+      "display_name": "Crystal Key",
+      "inputs": {
+        "HARMONIC_KEY": 2,
+        "CRYSTAL_WIRE": 8
+      },
+      "outputs": {
+        "CRYSTAL_KEY": 1
+      },
+      "production_time": 20.0,
+      "building_type": "Assembler",
+      "required_research": "crystal_key",
+      "energy_consumption": 25,
+      "mana_consumption": 0.0,
+      "phase": 3,
       "alternate_recipe": false
     },
     "crystal_wire": {
@@ -591,6 +664,25 @@
       "phase": 2,
       "alternate_recipe": false
     },
+    "titan_assembly": {
+      "id": "titan_assembly",
+      "display_name": "Titan Assembly",
+      "inputs": {
+        "REINFORCED_PLATING": 2,
+        "FORTRESS_MACHINERY": 1,
+        "ADAMANTINE_COMPONENT": 3
+      },
+      "outputs": {
+        "TITAN_ASSEMBLY": 1
+      },
+      "production_time": 6.0,
+      "building_type": "Assembler",
+      "required_research": "titan_assembly",
+      "energy_consumption": 20,
+      "mana_consumption": 0.0,
+      "phase": 3,
+      "alternate_recipe": false
+    },
     "ultra_component": {
       "id": "ultra_component",
       "display_name": "Ultra Component",
@@ -608,6 +700,23 @@
       "energy_consumption": 40,
       "mana_consumption": 0.0,
       "phase": 2,
+      "alternate_recipe": false
+    },
+    "void_component": {
+      "id": "void_component",
+      "display_name": "Void Component",
+      "inputs": {
+        "VOIDSTEEL_INGOT": 3
+      },
+      "outputs": {
+        "VOID_COMPONENT": 1
+      },
+      "production_time": 6.0,
+      "building_type": "Assembler",
+      "required_research": "void_component",
+      "energy_consumption": 10,
+      "mana_consumption": 0.0,
+      "phase": 3,
       "alternate_recipe": false
     },
     "advanced_limestone_crushing": {
@@ -724,6 +833,23 @@
       "phase": 2,
       "alternate_recipe": true
     },
+    "chest_powder_packing": {
+      "id": "chest_powder_packing",
+      "display_name": "Powder Packing",
+      "inputs": {
+        "CRYSTAL_POWDER": 1
+      },
+      "outputs": {
+        "ARCANE_CRYSTAL": 3
+      },
+      "production_time": 3.0,
+      "building_type": "Crusher",
+      "required_research": "chest_powder_packing",
+      "energy_consumption": 10,
+      "mana_consumption": 0.0,
+      "phase": 3,
+      "alternate_recipe": true
+    },
     "coal_spiking": {
       "id": "coal_spiking",
       "display_name": "Coal Spiking",
@@ -812,6 +938,23 @@
       "phase": 1,
       "alternate_recipe": false
     },
+    "merchant_powder_recycling": {
+      "id": "merchant_powder_recycling",
+      "display_name": "Powder Recycling",
+      "inputs": {
+        "CRYSTAL_POWDER": 6
+      },
+      "outputs": {
+        "CRYSTAL_INGOT": 1
+      },
+      "production_time": 12.0,
+      "building_type": "Crusher",
+      "required_research": "merchant_powder_recycling",
+      "energy_consumption": 15,
+      "mana_consumption": 0.0,
+      "phase": 3,
+      "alternate_recipe": true
+    },
     "refined_fuel": {
       "id": "refined_fuel",
       "display_name": "Refined Fuel",
@@ -828,6 +971,23 @@
       "energy_consumption": 10,
       "mana_consumption": 0.0,
       "phase": 2,
+      "alternate_recipe": false
+    },
+    "ultimate_limestone_crushing": {
+      "id": "ultimate_limestone_crushing",
+      "display_name": "Ultimate Limestone Crushing",
+      "inputs": {
+        "LIMESTONE": 1
+      },
+      "outputs": {
+        "FLUX": 2
+      },
+      "production_time": 2.0,
+      "building_type": "Crusher",
+      "required_research": "ultimate_limestone_crushing",
+      "energy_consumption": 35,
+      "mana_consumption": 0.0,
+      "phase": 3,
       "alternate_recipe": false
     },
     "void_cubes": {
@@ -948,6 +1108,26 @@
       "phase": 2,
       "alternate_recipe": false
     },
+    "chest_void_crystal": {
+      "id": "chest_void_crystal",
+      "display_name": "Void Crystal",
+      "inputs": {
+        "ARCANE_CANNON": 2,
+        "VOIDSTEEL_INGOT": 4,
+        "HARMONIC_RESONATOR": 2,
+        "ULTRA_COMPONENT": 2
+      },
+      "outputs": {
+        "SIEGE_CRYSTAL": 2
+      },
+      "production_time": 30.0,
+      "building_type": "Mana Forge",
+      "required_research": "chest_void_crystal",
+      "energy_consumption": 0,
+      "mana_consumption": 60.0,
+      "phase": 3,
+      "alternate_recipe": true
+    },
     "mana_bomb_crafting": {
       "id": "mana_bomb_crafting",
       "display_name": "Mana Bomb",
@@ -1035,6 +1215,24 @@
       "phase": 2,
       "alternate_recipe": true
     },
+    "merchant_pure_blessed_conduit": {
+      "id": "merchant_pure_blessed_conduit",
+      "display_name": "Pure Blessed Conduit",
+      "inputs": {
+        "ELECTRUM_INGOT": 2,
+        "PURE_ESSENCE": 4
+      },
+      "outputs": {
+        "BLESSED_CONDUIT": 3
+      },
+      "production_time": 4.0,
+      "building_type": "Mana Forge",
+      "required_research": "merchant_pure_blessed_conduit",
+      "energy_consumption": 0,
+      "mana_consumption": 6.0,
+      "phase": 3,
+      "alternate_recipe": true
+    },
     "merchant_pure_mana_bomb": {
       "id": "merchant_pure_mana_bomb",
       "display_name": "Pure Mana Bomb",
@@ -1109,6 +1307,25 @@
       "energy_consumption": 0,
       "mana_consumption": 240.0,
       "phase": 1,
+      "alternate_recipe": false
+    },
+    "void_splitter": {
+      "id": "void_splitter",
+      "display_name": "Void Splitter",
+      "inputs": {
+        "REALITY_REND": 2,
+        "HYBRID_MATRIX": 2,
+        "VOID_CHAMBER": 1
+      },
+      "outputs": {
+        "VOID_SPLITTER": 1
+      },
+      "production_time": 60.0,
+      "building_type": "Mana Forge",
+      "required_research": "void_splitter",
+      "energy_consumption": 0,
+      "mana_consumption": 120.0,
+      "phase": 3,
       "alternate_recipe": false
     },
     "ward_breaker": {
@@ -1235,6 +1452,43 @@
       "phase": 2,
       "alternate_recipe": true
     },
+    "chest_true_purification": {
+      "id": "chest_true_purification",
+      "display_name": "True Purification",
+      "inputs": {
+        "MAGIC_ESSENCE": 2,
+        "CRYSTAL_WIRE": 1
+      },
+      "outputs": {
+        "PURE_ESSENCE": 3
+      },
+      "production_time": 4.0,
+      "building_type": "Oilworks",
+      "required_research": "chest_true_purification",
+      "energy_consumption": 15,
+      "mana_consumption": 0.0,
+      "phase": 3,
+      "alternate_recipe": true
+    },
+    "dimensional_convergence": {
+      "id": "dimensional_convergence",
+      "display_name": "Dimensional Convergence",
+      "inputs": {
+        "SANCTIFIED_CORE": 1,
+        "CRYSTAL_ASSEMBLY": 1,
+        "TITAN_ASSEMBLY": 1
+      },
+      "outputs": {
+        "DIMENSIONAL_CONVERGENCE": 1
+      },
+      "production_time": 20.0,
+      "building_type": "Oilworks",
+      "required_research": "dimensional_convergence",
+      "energy_consumption": 25,
+      "mana_consumption": 10.0,
+      "phase": 3,
+      "alternate_recipe": false
+    },
     "hybrid_matrix": {
       "id": "hybrid_matrix",
       "display_name": "Hybrid Matrix",
@@ -1251,6 +1505,82 @@
       "building_type": "Oilworks",
       "required_research": "black_magic",
       "energy_consumption": 15,
+      "mana_consumption": 0.0,
+      "phase": 3,
+      "alternate_recipe": false
+    },
+    "merchant_adamantine_mastery": {
+      "id": "merchant_adamantine_mastery",
+      "display_name": "Adamantine Mastery",
+      "inputs": {
+        "PURE_ESSENCE": 1,
+        "BRONZE_CASING": 2,
+        "ADAMANTINE_COMPONENT": 2
+      },
+      "outputs": {
+        "MASTER_COMPONENT": 4
+      },
+      "production_time": 15.0,
+      "building_type": "Oilworks",
+      "required_research": "merchant_adamantine_mastery",
+      "energy_consumption": 20,
+      "mana_consumption": 0.0,
+      "phase": 3,
+      "alternate_recipe": true
+    },
+    "merchant_aggressive_electrum": {
+      "id": "merchant_aggressive_electrum",
+      "display_name": "Aggressive Electrum",
+      "inputs": {
+        "GOLD_INGOT": 1,
+        "SILVER_INGOT": 1
+      },
+      "outputs": {
+        "ELECTRUM_INGOT": 3
+      },
+      "production_time": 6.0,
+      "building_type": "Oilworks",
+      "required_research": "merchant_aggressive_electrum",
+      "energy_consumption": 15,
+      "mana_consumption": 6.0,
+      "phase": 3,
+      "alternate_recipe": true
+    },
+    "merchant_quenched_fortress_machinery": {
+      "id": "merchant_quenched_fortress_machinery",
+      "display_name": "Quenched Fortress Machinery",
+      "inputs": {
+        "WATER": 2,
+        "REINFORCED_PLATING": 2,
+        "ADAMANTINE_COMPONENT": 1
+      },
+      "outputs": {
+        "FORTRESS_MACHINERY": 2
+      },
+      "production_time": 6.0,
+      "building_type": "Oilworks",
+      "required_research": "merchant_quenched_fortress_machinery",
+      "energy_consumption": 10,
+      "mana_consumption": 0.0,
+      "phase": 3,
+      "alternate_recipe": true
+    },
+    "void_chamber": {
+      "id": "void_chamber",
+      "display_name": "Void Chamber",
+      "inputs": {
+        "DIMENSIONAL_COMPONENT": 2,
+        "DIMENSIONAL_CONVERGENCE": 2,
+        "ULTRA_COMPONENT": 1,
+        "VOID_COMPONENT": 4
+      },
+      "outputs": {
+        "VOID_CHAMBER": 1
+      },
+      "production_time": 20.0,
+      "building_type": "Oilworks",
+      "required_research": "void_chamber",
+      "energy_consumption": 25,
       "mana_consumption": 0.0,
       "phase": 3,
       "alternate_recipe": false
@@ -1560,7 +1890,7 @@
         "MAGIC_ESSENCE": 1
       },
       "outputs": {
-        "INGOT": 3
+        "INGOT": 4
       },
       "production_time": 6.0,
       "building_type": "Smelter",
@@ -1579,10 +1909,10 @@
       "outputs": {
         "INGOT": 1
       },
-      "production_time": 2.8,
+      "production_time": 2.0,
       "building_type": "Smelter",
       "required_research": "merchant_rapid_smelting",
-      "energy_consumption": 4,
+      "energy_consumption": 1,
       "mana_consumption": 0.0,
       "phase": 1,
       "alternate_recipe": true
@@ -1969,6 +2299,7 @@
   "research_phase_map": {
     "academy_arcane_cannon_mastery": 1,
     "academy_architect_bane_mastery": 2,
+    "academy_legion_annihilator_mastery": 3,
     "academy_mana_bomb_mastery": 1,
     "academy_reality_rend_mastery": 2,
     "academy_siege_crystal_mastery": 1,
@@ -2006,6 +2337,7 @@
     "architecture_2": 1,
     "architecture_3": 2,
     "architecture_4": 2,
+    "architecture_5": 3,
     "architect_bane": 2,
     "banking_technology": 1,
     "basic_alchemy": 1,
@@ -2025,15 +2357,22 @@
     "bronze_key_crafting": 2,
     "building_enhancement_4": 2,
     "building_enhancement_5": 3,
+    "byproduct_module_tech": 3,
     "chest_cinder_compression": 2,
     "chest_copper_resmelting": 2,
+    "chest_elesteel_component": 3,
     "chest_gold_resmelting": 3,
     "chest_key_smashing": 2,
     "chest_merchants_call": 2,
+    "chest_powder_packing": 3,
     "chest_pure_silver_smelting": 2,
     "chest_quenched_bronze_casing": 2,
+    "chest_quenched_housing": 3,
     "chest_quick_forging": 1,
     "chest_trace_metals": 2,
+    "chest_true_purification": 3,
+    "chest_void_crystal": 3,
+    "chest_xp_module_tech": 3,
     "chromatic_alchemy": 1,
     "climate_control_tech": 2,
     "coal_mining": 1,
@@ -2051,9 +2390,12 @@
     "conveyor_efficiency_8": 2,
     "conveyor_efficiency_9": 2,
     "copper_wire": 2,
+    "crystal_assembly": 3,
+    "crystal_key": 3,
     "crystal_packing": 3,
     "crystal_wire": 3,
     "dimensional_component": 3,
+    "dimensional_convergence": 3,
     "durable_housing": 2,
     "dust_slurry": 2,
     "efficient_mana_conversion": 2,
@@ -2077,6 +2419,7 @@
     "improved_trade": 1,
     "industrial_alchemy": 2,
     "ingot_resmelting": 2,
+    "lucky_alchemy": 3,
     "magical_alchemy": 2,
     "magical_storage": 1,
     "magic_trading": 1,
@@ -2087,7 +2430,9 @@
     "maritime_trade": 2,
     "master_crafting": 1,
     "master_crafting_techniques": 1,
+    "merchant_adamantine_mastery": 3,
     "merchant_advanced_gold_metallurgy": 2,
+    "merchant_aggressive_electrum": 3,
     "merchant_alternate_machinery": 2,
     "merchant_blast_copper": 2,
     "merchant_bronze_devices": 2,
@@ -2096,7 +2441,10 @@
     "merchant_enriched_extraction": 2,
     "merchant_essence_infusion": 1,
     "merchant_essence_purification": 2,
+    "merchant_powder_recycling": 3,
+    "merchant_pure_blessed_conduit": 3,
     "merchant_pure_mana_bomb": 2,
+    "merchant_quenched_fortress_machinery": 3,
     "merchant_quenched_steel_plate": 2,
     "merchant_rapid_smelting": 1,
     "merchant_silver_resmelting": 3,
@@ -2104,8 +2452,10 @@
     "merchant_tin_resmelting": 2,
     "merchant_transmutation_alchemy": 2,
     "merchant_transmutation_key": 1,
+    "merchant_volatile_module_tech": 3,
     "module_tech": 2,
     "new_metallurgy": 2,
+    "overclock_module_tech": 3,
     "overflow_routing": 1,
     "power_optimization": 1,
     "protective_wards": 1,
@@ -2119,6 +2469,9 @@
     "scalable_alchemy": 2,
     "siege_magic": 1,
     "silver_smelting": 2,
+    "skill_essence_burning": 3,
+    "skill_mana_lens_module": 3,
+    "skill_thermal_module_tech": 3,
     "solar_energy": 1,
     "solar_power": 1,
     "solar_resonator_technology": 1,
@@ -2130,7 +2483,9 @@
     "sun_smelting": 1,
     "superior_alchemy": 2,
     "throughput_control": 1,
+    "titan_assembly": 3,
     "trade_routes": 2,
+    "ultimate_limestone_crushing": 3,
     "advanced_magical_storage": 2,
     "ultimate_module_tech": 3,
     "ultimate_siege_magic": 1,
@@ -2139,8 +2494,11 @@
     "ultra_efficient_smelting": 1,
     "vertical_logistics": 1,
     "vertical_logistics_2": 1,
+    "void_chamber": 3,
+    "void_component": 3,
     "void_cubes": 3,
     "void_smelting": 3,
+    "void_splitter": 3,
     "ward_breaker": 2,
     "waste_recycling": 1
   }

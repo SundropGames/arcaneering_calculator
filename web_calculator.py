@@ -98,7 +98,10 @@ def calculate():
   max_phase = int(data.get('phase', 1))
   allow_alternate = data.get('allow_alternate', True)
   allowed_alternates = data.get('allowed_alternates', None)
-  chain = calculator.calculate_production_chain(target_resource, quantity, max_phase, allow_alternate, allowed_alternates)
+  allowed_recipes_list = data.get('allowed_recipes', None)
+  allowed_recipes_set = set(allowed_recipes_list) if allowed_recipes_list is not None else None
+  chain = calculator.calculate_production_chain(target_resource, quantity, max_phase, allow_alternate,
+                                                allowed_alternates, allowed_recipes_set)
   totals = calculator.get_total_requirements(chain)
   # Check for missing recipes
   warning = None

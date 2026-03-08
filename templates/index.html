@@ -81,6 +81,11 @@
         </label>
       </div>
       <button id="calc-btn" onclick="calculate()">Calculate</button>
+      <div style="display:flex;align-items:center;gap:8px;border-left:1px solid #4a4a4a;padding-left:15px;margin-left:5px;">
+        <label>Game import code:</label>
+        <input type="text" id="import-input" placeholder="Paste code from game…" style="width:220px;font-size:13px;">
+        <button onclick="importCode()" style="padding:8px 16px;font-size:14px;">Apply</button>
+      </div>
       {% if allow_reload %}
       <button onclick="reload()">Reload Recipes</button>
       {% endif %}
@@ -99,6 +104,7 @@
   
   <script>
     let alternateRecipes = [];
+    let importedAllowedRecipes = null;
     function loadAlternateRecipes() {
       fetch('/get_alternate_recipes')
       .then(r => r.json())
@@ -138,14 +144,14 @@
       const phase = document.getElementById('phase-select').value;
       const allowAlternate = document.getElementById('alternate-checkbox').checked;
       let allowedAlternates = null;
-      if (allowAlternate) {
+      if (allowAlternate && importedAllowedRecipes === null) {
         const checkedBoxes = document.querySelectorAll('.alternate-item input[type="checkbox"]:checked');
         allowedAlternates = Array.from(checkedBoxes).map(cb => cb.value);
       }
       fetch('/calculate', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({resource: resource, quantity: parseFloat(quantity), phase: parseInt(phase), allow_alternate: allowAlternate, allowed_alternates: allowedAlternates})
+        body: JSON.stringify({resource: resource, quantity: parseFloat(quantity), phase: parseInt(phase), allow_alternate: allowAlternate, allowed_alternates: allowedAlternates, allowed_recipes: importedAllowedRecipes})
       })
       .then(r => r.json())
       .then(data => {
@@ -497,7 +503,66 @@
       }
       container.insertBefore(svg, container.firstChild);
     }
-    
+    function clearImport() {
+      importedAllowedRecipes = null;
+      const badge = document.getElementById('import-badge');
+      if (badge) badge.remove();
+      document.getElementById('import-input').value = '';
+      calculate();
+    }
+    function importCode() {
+      const encoded = document.getElementById('import-input').value.trim();
+      if (!encoded) return;
+      try {
+        const decoded = atob(encoded);
+        const parts = decoded.split('|');
+        const phase = parseInt(parts[0]);
+        const recipeIds = (parts.length > 1 && parts[1]) ? parts[1].split(',') : [];
+        importedAllowedRecipes = recipeIds.length > 0 ? recipeIds : null;
+        const phaseSelect = document.getElementById('phase-select');
+        const option = phaseSelect.querySelector('option[value="' + phase + '"]');
+        if (option && !option.disabled) phaseSelect.value = phase;
+        const oldBadge = document.getElementById('import-badge');
+        if (oldBadge) oldBadge.remove();
+        const newBadge = document.createElement('span');
+        newBadge.id = 'import-badge';
+        newBadge.style.cssText = 'display:inline-flex;align-items:center;gap:8px;background:#2d4a38;border:1px solid #48bb78;color:#48bb78;padding:4px 10px;border-radius:4px;font-size:12px;font-weight:600;';
+        newBadge.innerHTML = recipeIds.length + ' recipes imported from game <button onclick="clearImport()" style="background:#48bb78;color:#1a1a1a;border:none;border-radius:3px;padding:1px 7px;font-size:11px;font-weight:700;cursor:pointer;">✕ Clear</button>';
+        document.getElementById('import-input').insertAdjacentElement('afterend', newBadge);
+        function applyCheckboxes() {
+          const recipeSet = new Set(recipeIds);
+          const hasAlts = alternateRecipes.some(r => recipeSet.has(r.id));
+          document.getElementById('alternate-checkbox').checked = hasAlts;
+          selectAllAlternates(false);
+          for (const id of recipeIds) {
+            const cb = document.getElementById('alt-' + id);
+            if (cb) cb.checked = true;
+          }
+          if (hasAlts) document.getElementById('advanced-section').classList.add('expanded');
+          calculate();
+        }
+        if (alternateRecipes.length > 0) {
+          applyCheckboxes();
+        } else {
+          fetch('/get_alternate_recipes')
+          .then(r => r.json())
+          .then(data => {
+            alternateRecipes = data;
+            const container = document.getElementById('alternate-list');
+            container.innerHTML = '';
+            for (const recipe of data) {
+              const div = document.createElement('div');
+              div.className = 'alternate-item';
+              div.innerHTML = '<input type="checkbox" id="alt-' + recipe.id + '" value="' + recipe.id + '"><label for="alt-' + recipe.id + '" style="cursor:pointer;">' + recipe.display_name + ' <span style="opacity:0.7;font-size:11px;">(' + recipe.building + ')</span></label>';
+              container.appendChild(div);
+            }
+            applyCheckboxes();
+          });
+        }
+      } catch(e) {
+        alert('Invalid import code — make sure you copied it from the game without extra spaces.');
+      }
+    }
     {% if allow_reload %}
     function reload() {
       fetch('/reload')
