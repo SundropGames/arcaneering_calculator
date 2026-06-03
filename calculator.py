@@ -185,15 +185,20 @@ class RecipeParser:
             resource_name = self.resource_enum_map.get(enum_value)
             if resource_name:
               recipe.outputs[resource_name] = amount
-      
+
       # Determine building type from filepath
       building_folder = os.path.basename(os.path.dirname(filepath))
       recipe.building_type = building_folder.replace('_', ' ').title()
       if recipe.required_research:
-        recipe.phase = self.research_phase_map.get(recipe.required_research, 1)
+        if recipe.required_research in self.research_phase_map:
+          recipe.phase = self.research_phase_map[recipe.required_research]
+        else:
+          print(
+            f"Warning: recipe '{recipe.id}' requires unmapped research '{recipe.required_research}'; gating beyond Act I (check the research id / its .tres location)")
+          recipe.phase = 99
       else:
         recipe.phase = 1
-      
+
       return recipe if recipe.id else None
     except Exception as e:
       print(f"Error parsing {filepath}: {e}")
@@ -304,8 +309,13 @@ class ProductionCalculator:
 
   def get_best_recipe(self, resource: str, max_phase: int = 1, prefer_efficient: bool = True,
                     allow_alternate: bool = True, allowed_alternates: Optional[List[str]] = None,
-                    allowed_recipes: Optional[Set[str]] = None) -> Optional[Recipe]:
+                    allowed_recipes: Optional[Set[str]] = None, recipe_overrides: Optional[Dict[str, str]] = None) -> Optional[Recipe]:
     """Get the best recipe for producing a resource; allowed_recipes overrides phase/alternate filters when present"""
+    if recipe_overrides is not None and resource in recipe_overrides:
+      override_id: str = recipe_overrides[resource]
+      for candidate in self.recipes_by_output.get(resource, []):
+        if candidate.id == override_id and candidate.phase <= max_phase:
+          return candidate
     if allowed_recipes is not None:
       candidates = [r for r in self.recipes_by_output.get(resource, []) if r.id in allowed_recipes]
     else:
@@ -322,7 +332,7 @@ class ProductionCalculator:
       for input_resource in recipe.inputs.keys():
         if input_resource not in self.BASE_RESOURCES:
           input_cost = self._get_raw_cost_recursive(input_resource, max_phase, allow_alternate, set(),
-                                                    allowed_alternates, allowed_recipes)
+                                                    allowed_alternates, allowed_recipes, recipe_overrides)
           if input_cost >= 9999.0:
             all_inputs_producible = False
             break
@@ -341,7 +351,7 @@ class ProductionCalculator:
           if input_resource in self.BASE_RESOURCES:
             raw_cost += input_per_output
           else:
-            input_cost = self._get_raw_cost_recursive(input_resource, max_phase, allow_alternate, set(), allowed_alternates, allowed_recipes)
+            input_cost = self._get_raw_cost_recursive(input_resource, max_phase, allow_alternate, set(), allowed_alternates, allowed_recipes, recipe_overrides)
             raw_cost += input_per_output * input_cost
         if raw_cost < best_raw_cost:
           best_raw_cost = raw_cost
@@ -350,7 +360,8 @@ class ProductionCalculator:
     return valid_candidates[0]
 
   def _get_raw_cost_recursive(self, resource: str, max_phase: int, allow_alternate: bool, visited: Set[str],
-                               allowed_alternates: Optional[List[str]] = None, allowed_recipes: Optional[Set[str]] = None) -> float:
+                               allowed_alternates: Optional[List[str]] = None, allowed_recipes: Optional[Set[str]] = None,
+                              recipe_overrides: Optional[Dict[str, str]] = None) -> float:
     """Recursively calculate the raw resource cost to produce 1 unit of a resource"""
     if resource in self.BASE_RESOURCES:
       return 1.0
@@ -358,7 +369,7 @@ class ProductionCalculator:
       return 999999.0
     visited.add(resource)
     recipe = self.get_best_recipe(resource, max_phase, prefer_efficient=False, allow_alternate=allow_alternate,
-                                  allowed_alternates=allowed_alternates, allowed_recipes=allowed_recipes)
+                                  allowed_alternates=allowed_alternates, allowed_recipes=allowed_recipes, recipe_overrides=recipe_overrides)
     if not recipe:
       visited.remove(resource)
       return 999999.0
@@ -370,7 +381,8 @@ class ProductionCalculator:
         continue
       valid_inputs += 1
       input_per_output = input_amount / output_amount
-      input_cost = self._get_raw_cost_recursive(input_resource, max_phase, allow_alternate, visited.copy(), allowed_alternates, allowed_recipes)
+      input_cost = self._get_raw_cost_recursive(input_resource, max_phase, allow_alternate, visited.copy(), allowed_alternates, allowed_recipes,
+                                                recipe_overrides)
       total_cost += input_per_output * input_cost
     if valid_inputs == 0:
       visited.remove(resource)
@@ -380,15 +392,15 @@ class ProductionCalculator:
 
   def calculate_production_chain(self, target_resource: str, target_quantity_per_minute: float,
                                max_phase: int = 1, allow_alternate: bool = True, allowed_alternates: Optional[List[str]] = None,
-                               allowed_recipes: Optional[Set[str]] = None) -> ProductionNode:
+                               allowed_recipes: Optional[Set[str]] = None, recipe_overrides: Optional[Dict[str, str]] = None) -> ProductionNode:
     """Calculate complete production chain for target resource"""
     visited: Set[str] = set()
     return self._build_chain_recursive(target_resource, target_quantity_per_minute, visited, 0, max_phase,
-                                       allow_alternate, allowed_alternates, allowed_recipes)
+                                       allow_alternate, allowed_alternates, allowed_recipes, recipe_overrides)
 
   def _build_chain_recursive(self, resource: str, quantity_per_minute: float, visited: Set[str], depth: int,
                            max_phase: int, allow_alternate: bool = True, allowed_alternates: Optional[List[str]] = None,
-                           allowed_recipes: Optional[Set[str]] = None) -> ProductionNode:
+                           allowed_recipes: Optional[Set[str]] = None, recipe_overrides: Optional[Dict[str, str]] = None) -> ProductionNode:
     """Recursively build production chain"""
     if resource in self.BASE_RESOURCES:
       return ProductionNode(
@@ -411,7 +423,8 @@ class ProductionCalculator:
         children = []
       )
     visited.add(resource)
-    recipe = self.get_best_recipe(resource, max_phase, allow_alternate=allow_alternate, allowed_alternates=allowed_alternates, allowed_recipes=allowed_recipes)
+    recipe = self.get_best_recipe(resource, max_phase, allow_alternate=allow_alternate, allowed_alternates=allowed_alternates, allowed_recipes=allowed_recipes,
+                                  recipe_overrides=recipe_overrides)
     if not recipe:
       return ProductionNode(
         resource = resource,
@@ -434,7 +447,7 @@ class ProductionCalculator:
       input_per_minute = (input_amount / output_amount) * quantity_per_minute
       child_visited = visited.copy()
       child_node = self._build_chain_recursive(input_resource, input_per_minute, child_visited, depth + 1, max_phase,
-                                               allow_alternate, allowed_alternates, allowed_recipes)
+                                               allow_alternate, allowed_alternates, allowed_recipes, recipe_overrides)
       children.append(child_node)
     if not children and resource not in self.BASE_RESOURCES:
       visited.remove(resource)

@@ -41,7 +41,9 @@ def build_graph_view(root_node):
             'type': 'production',
             'building': node.building_type,
             'recipe': node.recipe.display_name,
+            'recipe_id': node.recipe.id,
             'output_resource': calculator.get_display_name(output_resource),
+            'output_resource_key': output_resource,
             'output_rate': 0,
             'building_count': 0,
             'inputs': {},
@@ -86,7 +88,7 @@ def index():
 		resources = [r for r in resources if r != 'NONE' and r not in calculator.BASE_RESOURCES and any(recipe.phase <= 1 and recipe.building_type != 'Crusher' for recipe in calculator.recipes_by_output.get(r, []))]
 	else:  # Local dev mode - show all
 		resources = [r for r in resources if r != 'NONE' and r not in calculator.BASE_RESOURCES]
-	resource_display = [(res, calculator.get_display_name(res)) for res in resources]
+	resource_display = sorted(((res, calculator.get_display_name(res)) for res in resources), key=lambda item: item[1].lower())
 	return render_template('index.html', resources=resource_display, allow_reload=ALLOW_RELOAD, snapshot_timestamp=snapshot_timestamp)
 
 
@@ -100,8 +102,9 @@ def calculate():
   allowed_alternates = data.get('allowed_alternates', None)
   allowed_recipes_list = data.get('allowed_recipes', None)
   allowed_recipes_set = set(allowed_recipes_list) if allowed_recipes_list is not None else None
+  recipe_overrides = data.get('recipe_overrides', None) or None
   chain = calculator.calculate_production_chain(target_resource, quantity, max_phase, allow_alternate,
-                                                allowed_alternates, allowed_recipes_set)
+                                                allowed_alternates, allowed_recipes_set, recipe_overrides)
   totals = calculator.get_total_requirements(chain)
   # Check for missing recipes
   warning = None
@@ -155,6 +158,25 @@ def reload_recipes():
   calculator = ProductionCalculator(parser.recipes)
   calculator.set_display_names(parser.display_name_map)
   return jsonify({'status': 'ok', 'recipe_count': len(parser.recipes)})
+
+@app.route('/get_recipes_for_resource')
+def get_recipes_for_resource():
+  resource = request.args.get('resource', '').upper()
+  max_phase = int(request.args.get('phase', 1))
+  recipes = []
+  for recipe in calculator.recipes_by_output.get(resource, []):
+    if recipe.phase > max_phase:
+      continue
+    inputs_desc = " + ".join(f"{amt}x {calculator.get_display_name(res)}" for res, amt in recipe.inputs.items() if res != 'NONE')
+    recipes.append({
+      'id': recipe.id,
+      'display_name': recipe.display_name,
+      'building': recipe.building_type,
+      'is_alternate': recipe.alternate_recipe,
+      'inputs': inputs_desc if inputs_desc else 'No inputs'
+    })
+  recipes.sort(key=lambda r: (r['is_alternate'], r['display_name']))
+  return jsonify(recipes)
 
 if __name__ == '__main__':
   app.run(debug=True, port=5000)

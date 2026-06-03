@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-05T16:02:25.870036",
+  "timestamp": "2026-06-03T06:42:47.566005",
   "recipes": {
     "adamantine_component": {
       "id": "adamantine_component",
@@ -13,10 +13,10 @@
       },
       "production_time": 6.0,
       "building_type": "Assembler",
-      "required_research": "adamantine_ingot",
+      "required_research": "adamantine_component",
       "energy_consumption": 15,
       "mana_consumption": 0.0,
-      "phase": 1,
+      "phase": 3,
       "alternate_recipe": false
     },
     "advanced_component": {
@@ -360,6 +360,45 @@
       "phase": 2,
       "alternate_recipe": false
     },
+    "eternal_assembly": {
+      "id": "eternal_assembly",
+      "display_name": "Eternal Assembly",
+      "inputs": {
+        "ETHEREAL_STEEL": 4,
+        "BRONZE_CASING": 4,
+        "REINFORCED_PLATING": 2,
+        "ADAMANTINE_COMPONENT": 4
+      },
+      "outputs": {
+        "ETERNAL_ASSEMBLY": 1
+      },
+      "production_time": 12.0,
+      "building_type": "Assembler",
+      "required_research": "eternal_assembly",
+      "energy_consumption": 40,
+      "mana_consumption": 0.0,
+      "phase": 3,
+      "alternate_recipe": false
+    },
+    "ethereal_assembly": {
+      "id": "ethereal_assembly",
+      "display_name": "Ethereal Assembly",
+      "inputs": {
+        "ADVANCED_MACHINERY": 4,
+        "STEEL_PLATE": 4,
+        "MITHRIL_COMPONENT": 3
+      },
+      "outputs": {
+        "ETHEREAL_ASSEMBLY": 1
+      },
+      "production_time": 12.0,
+      "building_type": "Assembler",
+      "required_research": "ethereal_assembly",
+      "energy_consumption": 30,
+      "mana_consumption": 0.0,
+      "phase": 3,
+      "alternate_recipe": false
+    },
     "fortress_machinery": {
       "id": "fortress_machinery",
       "display_name": "Fortress Machinery",
@@ -575,6 +614,24 @@
       "phase": 1,
       "alternate_recipe": true
     },
+    "mithril_component": {
+      "id": "mithril_component",
+      "display_name": "Mithril Component",
+      "inputs": {
+        "MITHRIL_ALLOY": 3,
+        "STEEL_COMPONENT": 1
+      },
+      "outputs": {
+        "MITHRIL_COMPONENT": 1
+      },
+      "production_time": 6.0,
+      "building_type": "Assembler",
+      "required_research": "mithril_component",
+      "energy_consumption": 50,
+      "mana_consumption": 0.0,
+      "phase": 3,
+      "alternate_recipe": false
+    },
     "purified_solvent": {
       "id": "purified_solvent",
       "display_name": "Purified Solvent",
@@ -662,6 +719,42 @@
       "energy_consumption": 15,
       "mana_consumption": 0.0,
       "phase": 2,
+      "alternate_recipe": false
+    },
+    "stellar_assembly": {
+      "id": "stellar_assembly",
+      "display_name": "Stellar Assembly",
+      "inputs": {
+        "COMPONENT": 6,
+        "CONCENTRATED_ENERGY": 2,
+        "STELLAR_COMPONENT": 2
+      },
+      "outputs": {
+        "STELLAR_ASSEMBLY": 1
+      },
+      "production_time": 12.0,
+      "building_type": "Assembler",
+      "required_research": "stellar_assembly",
+      "energy_consumption": 30,
+      "mana_consumption": 0.0,
+      "phase": 3,
+      "alternate_recipe": false
+    },
+    "stellar_component": {
+      "id": "stellar_component",
+      "display_name": "Stellar Component",
+      "inputs": {
+        "STARSTEEL_INGOT": 3
+      },
+      "outputs": {
+        "STELLAR_COMPONENT": 1
+      },
+      "production_time": 10.0,
+      "building_type": "Assembler",
+      "required_research": "stellar_component",
+      "energy_consumption": 10,
+      "mana_consumption": 15.0,
+      "phase": 3,
       "alternate_recipe": false
     },
     "titan_assembly": {
@@ -816,6 +909,24 @@
       "phase": 2,
       "alternate_recipe": true
     },
+    "chest_coal_ultraspiking": {
+      "id": "chest_coal_ultraspiking",
+      "display_name": "Coal Ultraspiking",
+      "inputs": {
+        "COAL": 1,
+        "CRYSTAL_INGOT": 2
+      },
+      "outputs": {
+        "CRYSTALLIZED_COAL": 3
+      },
+      "production_time": 5.0,
+      "building_type": "Crusher",
+      "required_research": "chest_coal_ultraspiking",
+      "energy_consumption": 5,
+      "mana_consumption": 7.5,
+      "phase": 3,
+      "alternate_recipe": true
+    },
     "chest_key_smashing": {
       "id": "chest_key_smashing",
       "display_name": "Key Smashing",
@@ -870,7 +981,7 @@
     },
     "concentrated_energy": {
       "id": "concentrated_energy",
-      "display_name": "Concentrated Energy",
+      "display_name": "Liquified Cinder",
       "inputs": {
         "CINDER": 2,
         "REFINED_FUEL": 1
@@ -973,6 +1084,42 @@
       "phase": 2,
       "alternate_recipe": false
     },
+    "runic_plating": {
+      "id": "runic_plating",
+      "display_name": "Runic Plating",
+      "inputs": {
+        "RUNESTONE": 3,
+        "STEEL_PLATE": 2
+      },
+      "outputs": {
+        "RUNIC_PLATING": 1
+      },
+      "production_time": 4.0,
+      "building_type": "Crusher",
+      "required_research": "runic_plating",
+      "energy_consumption": 15,
+      "mana_consumption": 0.0,
+      "phase": 3,
+      "alternate_recipe": false
+    },
+    "stellar_fuel": {
+      "id": "stellar_fuel",
+      "display_name": "Stellar Fuel",
+      "inputs": {
+        "STARSTEEL_INGOT": 3,
+        "CRYSTALLIZED_COAL": 1
+      },
+      "outputs": {
+        "STELLAR_FUEL": 1
+      },
+      "production_time": 4.0,
+      "building_type": "Crusher",
+      "required_research": "stellar_fuel",
+      "energy_consumption": 5,
+      "mana_consumption": 0.0,
+      "phase": 3,
+      "alternate_recipe": false
+    },
     "ultimate_limestone_crushing": {
       "id": "ultimate_limestone_crushing",
       "display_name": "Ultimate Limestone Crushing",
@@ -1036,6 +1183,21 @@
       "mana_consumption": 0.0,
       "phase": 1,
       "alternate_recipe": false
+    },
+    "chest_ultra_efficient_extraction": {
+      "id": "chest_ultra_efficient_extraction",
+      "display_name": "Ultra-Efficient Extraction",
+      "inputs": {},
+      "outputs": {
+        "NONE": 2
+      },
+      "production_time": 4.0,
+      "building_type": "Fluid Extractor",
+      "required_research": "chest_ultra_efficient_extraction",
+      "energy_consumption": 25,
+      "mana_consumption": 0.0,
+      "phase": 3,
+      "alternate_recipe": true
     },
     "enriched_extraction": {
       "id": "enriched_extraction",
@@ -1107,6 +1269,24 @@
       "mana_consumption": 9.0,
       "phase": 2,
       "alternate_recipe": false
+    },
+    "chest_tin_transformation": {
+      "id": "chest_tin_transformation",
+      "display_name": "Tin Transformation",
+      "inputs": {
+        "TIN_ORE": 2,
+        "PURE_ESSENCE": 2
+      },
+      "outputs": {
+        "COAL": 1
+      },
+      "production_time": 3.0,
+      "building_type": "Mana Forge",
+      "required_research": "chest_tin_transformation",
+      "energy_consumption": 5,
+      "mana_consumption": 3.0,
+      "phase": 2,
+      "alternate_recipe": true
     },
     "chest_void_crystal": {
       "id": "chest_void_crystal",
@@ -1251,6 +1431,42 @@
       "phase": 2,
       "alternate_recipe": true
     },
+    "merchant_synthdrop": {
+      "id": "merchant_synthdrop",
+      "display_name": "Synthdrop",
+      "inputs": {
+        "STELLAR_FUEL": 1
+      },
+      "outputs": {
+        "SUNDROP": 3
+      },
+      "production_time": 5.0,
+      "building_type": "Mana Forge",
+      "required_research": "merchant_synthdrop",
+      "energy_consumption": 0,
+      "mana_consumption": 7.5,
+      "phase": 3,
+      "alternate_recipe": true
+    },
+    "pure_cannon": {
+      "id": "pure_cannon",
+      "display_name": "Pure Cannon",
+      "inputs": {
+        "ARCANE_DEVICE": 1,
+        "FORTRESS_MACHINERY": 2,
+        "CONCENTRATED_ENERGY": 2
+      },
+      "outputs": {
+        "ARCANE_CANNON": 1
+      },
+      "production_time": 10.0,
+      "building_type": "Mana Forge",
+      "required_research": "pure_cannon",
+      "energy_consumption": 0,
+      "mana_consumption": 10.0,
+      "phase": 2,
+      "alternate_recipe": true
+    },
     "reality_rend": {
       "id": "reality_rend",
       "display_name": "Reality Rend",
@@ -1307,6 +1523,45 @@
       "energy_consumption": 0,
       "mana_consumption": 240.0,
       "phase": 1,
+      "alternate_recipe": false
+    },
+    "star_render": {
+      "id": "star_render",
+      "display_name": "Star Render",
+      "inputs": {
+        "VOID_SPLITTER": 2,
+        "STAR_CORE": 3,
+        "QUANTUM_SYSTEM": 2,
+        "STAR_SYSTEM": 1
+      },
+      "outputs": {
+        "STAR_RENDER": 1
+      },
+      "production_time": 60.0,
+      "building_type": "Mana Forge",
+      "required_research": "star_render",
+      "energy_consumption": 0,
+      "mana_consumption": 180.0,
+      "phase": 3,
+      "alternate_recipe": false
+    },
+    "star_system": {
+      "id": "star_system",
+      "display_name": "Star System",
+      "inputs": {
+        "PURIFIED_SOLVENT": 6,
+        "RUNIC_MATRIX": 2,
+        "CELESTIAL_SYSTEM": 2
+      },
+      "outputs": {
+        "STAR_SYSTEM": 1
+      },
+      "production_time": 15.0,
+      "building_type": "Mana Forge",
+      "required_research": "star_system",
+      "energy_consumption": 25,
+      "mana_consumption": 10.0,
+      "phase": 3,
       "alternate_recipe": false
     },
     "void_splitter": {
@@ -1452,6 +1707,46 @@
       "phase": 2,
       "alternate_recipe": true
     },
+    "celestial_matrix": {
+      "id": "celestial_matrix",
+      "display_name": "Celestial Matrix",
+      "inputs": {
+        "ENCHANTED_STEEL": 4,
+        "HARMONIC_RESONATOR": 2,
+        "RESONANT_CORE": 2,
+        "RUNIC_MATRIX": 2
+      },
+      "outputs": {
+        "CELESTIAL_MATRIX": 1
+      },
+      "production_time": 15.0,
+      "building_type": "Oilworks",
+      "required_research": "celestial_matrix",
+      "energy_consumption": 30,
+      "mana_consumption": 0.0,
+      "phase": 3,
+      "alternate_recipe": false
+    },
+    "celestial_system": {
+      "id": "celestial_system",
+      "display_name": "Celestial System",
+      "inputs": {
+        "DURABLE_HOUSING": 6,
+        "TITAN_ASSEMBLY": 3,
+        "ETHEREAL_ASSEMBLY": 1,
+        "RUNIC_MATRIX": 2
+      },
+      "outputs": {
+        "CELESTIAL_SYSTEM": 1
+      },
+      "production_time": 5.0,
+      "building_type": "Oilworks",
+      "required_research": "celestial_system",
+      "energy_consumption": 25,
+      "mana_consumption": 5.0,
+      "phase": 3,
+      "alternate_recipe": false
+    },
     "chest_true_purification": {
       "id": "chest_true_purification",
       "display_name": "True Purification",
@@ -1486,6 +1781,26 @@
       "required_research": "dimensional_convergence",
       "energy_consumption": 25,
       "mana_consumption": 10.0,
+      "phase": 3,
+      "alternate_recipe": false
+    },
+    "enhanced_core": {
+      "id": "enhanced_core",
+      "display_name": "Enhanced Core",
+      "inputs": {
+        "BLESSED_CONDUIT": 4,
+        "DIMENSIONAL_CONVERGENCE": 2,
+        "RESONANT_CORE": 2,
+        "MITHRIL_COMPONENT": 2
+      },
+      "outputs": {
+        "ENHANCED_CORE": 1
+      },
+      "production_time": 15.0,
+      "building_type": "Oilworks",
+      "required_research": "enhanced_core",
+      "energy_consumption": 25,
+      "mana_consumption": 22.5,
       "phase": 3,
       "alternate_recipe": false
     },
@@ -1564,6 +1879,85 @@
       "mana_consumption": 0.0,
       "phase": 3,
       "alternate_recipe": true
+    },
+    "quantum_system": {
+      "id": "quantum_system",
+      "display_name": "Quantum System",
+      "inputs": {
+        "FORTRESS_MACHINERY": 4,
+        "DIMENSIONAL_COMPONENT": 4,
+        "STELLAR_ASSEMBLY": 2,
+        "ENHANCED_CORE": 2
+      },
+      "outputs": {
+        "QUANTUM_SYSTEM": 1
+      },
+      "production_time": 8.0,
+      "building_type": "Oilworks",
+      "required_research": "quantum_system",
+      "energy_consumption": 50,
+      "mana_consumption": 0.0,
+      "phase": 3,
+      "alternate_recipe": false
+    },
+    "resonant_core": {
+      "id": "resonant_core",
+      "display_name": "Resonant Core",
+      "inputs": {
+        "HARMONIC_RESONATOR": 2,
+        "CRYSTAL_WIRE": 4,
+        "STELLAR_COMPONENT": 2
+      },
+      "outputs": {
+        "RESONANT_CORE": 1
+      },
+      "production_time": 15.0,
+      "building_type": "Oilworks",
+      "required_research": "resonant_core",
+      "energy_consumption": 20,
+      "mana_consumption": 0.0,
+      "phase": 3,
+      "alternate_recipe": false
+    },
+    "runic_matrix": {
+      "id": "runic_matrix",
+      "display_name": "Runic Matrix",
+      "inputs": {
+        "MAGIC_ESSENCE": 6,
+        "ARCANE_CRYSTAL": 6,
+        "PURE_ESSENCE": 6,
+        "RUNIC_PLATING": 3
+      },
+      "outputs": {
+        "RUNIC_MATRIX": 1
+      },
+      "production_time": 10.0,
+      "building_type": "Oilworks",
+      "required_research": "runic_matrix",
+      "energy_consumption": 25,
+      "mana_consumption": 0.0,
+      "phase": 3,
+      "alternate_recipe": false
+    },
+    "star_core": {
+      "id": "star_core",
+      "display_name": "Star Core",
+      "inputs": {
+        "SANCTIFIED_CORE": 2,
+        "CRYSTAL_ASSEMBLY": 4,
+        "RESONANT_CORE": 1,
+        "STELLAR_ASSEMBLY": 2
+      },
+      "outputs": {
+        "STAR_CORE": 1
+      },
+      "production_time": 6.0,
+      "building_type": "Oilworks",
+      "required_research": "star_core",
+      "energy_consumption": 30,
+      "mana_consumption": 0.0,
+      "phase": 3,
+      "alternate_recipe": false
     },
     "void_chamber": {
       "id": "void_chamber",
@@ -1829,6 +2223,44 @@
       "phase": 2,
       "alternate_recipe": false
     },
+    "enchanted_steel": {
+      "id": "enchanted_steel",
+      "display_name": "Enchanted Steel",
+      "inputs": {
+        "STEEL_INGOT": 3,
+        "RUNESTONE": 6,
+        "PURE_ESSENCE": 3
+      },
+      "outputs": {
+        "ENCHANTED_STEEL": 1
+      },
+      "production_time": 6.0,
+      "building_type": "Smelter",
+      "required_research": "enchanted_steel",
+      "energy_consumption": 30,
+      "mana_consumption": 9.0,
+      "phase": 3,
+      "alternate_recipe": false
+    },
+    "ethereal_steel": {
+      "id": "ethereal_steel",
+      "display_name": "Ethereal Steel",
+      "inputs": {
+        "VOIDSTEEL_INGOT": 2,
+        "STARSTEEL_INGOT": 2,
+        "CRYSTALLIZED_COAL": 2
+      },
+      "outputs": {
+        "ETHEREAL_STEEL": 1
+      },
+      "production_time": 5.0,
+      "building_type": "Smelter",
+      "required_research": "ethereal_steel",
+      "energy_consumption": 40,
+      "mana_consumption": 0.0,
+      "phase": 3,
+      "alternate_recipe": false
+    },
     "gold_ingot_smelting": {
       "id": "gold_ingot_smelting",
       "display_name": "Gold Ingot Smelting",
@@ -1878,6 +2310,23 @@
       "building_type": "Smelter",
       "required_research": "merchant_advanced_gold_metallurgy",
       "energy_consumption": 20,
+      "mana_consumption": 0.0,
+      "phase": 2,
+      "alternate_recipe": true
+    },
+    "merchant_cinderification": {
+      "id": "merchant_cinderification",
+      "display_name": "Cinderification",
+      "inputs": {
+        "ORE": 2
+      },
+      "outputs": {
+        "CINDER": 1
+      },
+      "production_time": 6.0,
+      "building_type": "Smelter",
+      "required_research": "merchant_cinderification",
+      "energy_consumption": 50,
       "mana_consumption": 0.0,
       "phase": 2,
       "alternate_recipe": true
@@ -1934,6 +2383,41 @@
       "phase": 3,
       "alternate_recipe": true
     },
+    "mithril_alloy": {
+      "id": "mithril_alloy",
+      "display_name": "Mithril Alloy",
+      "inputs": {
+        "MITHRIL_INGOT": 2,
+        "ELECTRUM_INGOT": 2
+      },
+      "outputs": {
+        "MITHRIL_ALLOY": 1
+      },
+      "production_time": 10.0,
+      "building_type": "Smelter",
+      "required_research": "mithril_smelting",
+      "energy_consumption": 40,
+      "mana_consumption": 10.0,
+      "phase": 3,
+      "alternate_recipe": false
+    },
+    "mithril_smelting": {
+      "id": "mithril_smelting",
+      "display_name": "Mithril Smelting",
+      "inputs": {
+        "MITHRIL_ORE": 1
+      },
+      "outputs": {
+        "MITHRIL_INGOT": 1
+      },
+      "production_time": 3.0,
+      "building_type": "Smelter",
+      "required_research": "mithril_smelting",
+      "energy_consumption": 50,
+      "mana_consumption": 0.0,
+      "phase": 3,
+      "alternate_recipe": false
+    },
     "silver_smelting": {
       "id": "silver_smelting",
       "display_name": "Silver Smelting",
@@ -1967,6 +2451,24 @@
       "energy_consumption": 10,
       "mana_consumption": 0.0,
       "phase": 2,
+      "alternate_recipe": false
+    },
+    "stellar_smelting": {
+      "id": "stellar_smelting",
+      "display_name": "Stellar Smelting",
+      "inputs": {
+        "COAL": 2,
+        "STARFALL_ORE": 2
+      },
+      "outputs": {
+        "STARSTEEL_INGOT": 1
+      },
+      "production_time": 6.0,
+      "building_type": "Smelter",
+      "required_research": "stellar_smelting",
+      "energy_consumption": 25,
+      "mana_consumption": 3.0,
+      "phase": 3,
       "alternate_recipe": false
     },
     "sun_smelting": {
@@ -2222,7 +2724,7 @@
     "SANCTIFIED_CORE": "Sanctified Core",
     "PURIFIED_SOLVENT": "Purified Solvent",
     "REFINED_FUEL": "Refined Fuel",
-    "CONCENTRATED_ENERGY": "Concentrated Energy",
+    "CONCENTRATED_ENERGY": "Liquified Cinder",
     "BRONZE_KEY": "Bronze Key",
     "HARMONIC_KEY": "Harmonic Key",
     "WARD_BREAKER": "Ward Breaker",
@@ -2285,7 +2787,8 @@
     "LEGION_MATRIX": "Legion Matrix",
     "LEGION_ANNIHILATOR": "Legion Annihilator",
     "VOID_SPLITTER": "Void Splitter",
-    "STAR_RENDER": "Star Render"
+    "STAR_RENDER": "Star Render",
+    "STELLAR_FUEL": "Stellar Fuel"
   },
   "building_enum_map": {
     "MINER": "Miner",
@@ -2351,6 +2854,7 @@
     "blast_smelting": 2,
     "blast_steel": 2,
     "blessed_conduit": 2,
+    "bouncy_hooves": 3,
     "bridge_engineering": 1,
     "bronze_alloy": 2,
     "bronze_casing": 2,
@@ -2358,7 +2862,10 @@
     "building_enhancement_4": 2,
     "building_enhancement_5": 3,
     "byproduct_module_tech": 3,
+    "celestial_matrix": 3,
+    "celestial_system": 3,
     "chest_cinder_compression": 2,
+    "chest_coal_ultraspiking": 3,
     "chest_copper_resmelting": 2,
     "chest_elesteel_component": 3,
     "chest_gold_resmelting": 3,
@@ -2369,11 +2876,15 @@
     "chest_quenched_bronze_casing": 2,
     "chest_quenched_housing": 3,
     "chest_quick_forging": 1,
+    "chest_tin_transformation": 2,
     "chest_trace_metals": 2,
     "chest_true_purification": 3,
+    "chest_ultra_efficient_extraction": 3,
     "chest_void_crystal": 3,
     "chest_xp_module_tech": 3,
     "chromatic_alchemy": 1,
+    "chromatic_alchemy_2": 2,
+    "chromatic_alchemy_3": 3,
     "climate_control_tech": 2,
     "coal_mining": 1,
     "coal_spiking": 2,
@@ -2396,6 +2907,7 @@
     "crystal_wire": 3,
     "dimensional_component": 3,
     "dimensional_convergence": 3,
+    "dual_relic_slot": 3,
     "durable_housing": 2,
     "dust_slurry": 2,
     "efficient_mana_conversion": 2,
@@ -2403,9 +2915,14 @@
     "efficient_smelting": 1,
     "electrum_alloy": 2,
     "elevator_bridge_technology": 1,
+    "enchanted_steel": 3,
+    "enhanced_core": 3,
     "enlightened_alchemy": 3,
     "enriched_mining": 1,
     "essence_efficiency": 1,
+    "eternal_assembly": 3,
+    "ethereal_assembly": 3,
+    "ethereal_steel": 3,
     "extended_highway_range": 2,
     "fluid_technology": 2,
     "fortress_machinery": 2,
@@ -2419,6 +2936,7 @@
     "improved_trade": 1,
     "industrial_alchemy": 2,
     "ingot_resmelting": 2,
+    "logic_module_tech": 3,
     "lucky_alchemy": 3,
     "magical_alchemy": 2,
     "magical_storage": 1,
@@ -2437,6 +2955,7 @@
     "merchant_blast_copper": 2,
     "merchant_bronze_devices": 2,
     "merchant_bulk_components": 1,
+    "merchant_cinderification": 2,
     "merchant_crystal_synthesis": 1,
     "merchant_enriched_extraction": 2,
     "merchant_essence_infusion": 1,
@@ -2447,24 +2966,35 @@
     "merchant_quenched_fortress_machinery": 3,
     "merchant_quenched_steel_plate": 2,
     "merchant_rapid_smelting": 1,
+    "merchant_ship_jetpack": 3,
     "merchant_silver_resmelting": 3,
     "merchant_submerged_mining": 2,
+    "merchant_synthdrop": 3,
     "merchant_tin_resmelting": 2,
     "merchant_transmutation_alchemy": 2,
     "merchant_transmutation_key": 1,
     "merchant_volatile_module_tech": 3,
+    "mithril_component": 3,
+    "mithril_smelting": 3,
     "module_tech": 2,
+    "mountaineer": 3,
     "new_metallurgy": 2,
     "overclock_module_tech": 3,
     "overflow_routing": 1,
+    "overflow_routing_2": 3,
     "power_optimization": 1,
     "protective_wards": 1,
+    "pure_cannon": 2,
     "purified_solvent": 2,
     "quantitative_logistics": 2,
+    "quantum_system": 3,
     "reality_rend": 2,
     "refined_fuel": 2,
     "reinforced_plating": 2,
+    "resonant_core": 3,
     "resource_refinement": 1,
+    "runic_matrix": 3,
+    "runic_plating": 3,
     "sanctified_core": 2,
     "scalable_alchemy": 2,
     "siege_magic": 1,
@@ -2477,9 +3007,16 @@
     "solar_resonator_technology": 1,
     "specialized_components": 1,
     "speed_module_tech": 2,
+    "star_core": 3,
+    "star_render": 3,
+    "star_system": 3,
     "steel_component": 2,
     "steel_plate": 2,
     "steel_smelting": 2,
+    "stellar_assembly": 3,
+    "stellar_component": 3,
+    "stellar_fuel": 3,
+    "stellar_smelting": 3,
     "sun_smelting": 1,
     "superior_alchemy": 2,
     "throughput_control": 1,
@@ -2488,6 +3025,7 @@
     "ultimate_limestone_crushing": 3,
     "advanced_magical_storage": 2,
     "ultimate_module_tech": 3,
+    "ultimate_packing": 3,
     "ultimate_siege_magic": 1,
     "ultra_component": 2,
     "ultra_efficient_mining": 2,

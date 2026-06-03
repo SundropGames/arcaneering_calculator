@@ -47,6 +47,18 @@
   .alternate-item input { cursor: pointer; }
   .select-all-row { display: flex; gap: 10px; margin-bottom: 10px; }
   .select-all-row button { padding: 6px 12px; font-size: 12px; background: #4a4a4a; }
+  .recipe-picker { position: fixed; z-index: 1000; background: #2a2a2a; border: 2px solid #ff8c42; border-radius: 8px; box-shadow: 0 8px 24px rgba(0,0,0,0.6); max-width: 320px; max-height: 70vh; overflow-y: auto; padding: 6px; }
+  .recipe-picker-title { font-weight: bold; color: #ff8c42; font-size: 13px; padding: 8px 10px; border-bottom: 1px solid #4a4a4a; margin-bottom: 4px; }
+  .recipe-option { padding: 8px 10px; border-radius: 6px; cursor: pointer; transition: background 0.15s; }
+  .recipe-option:hover { background: #3a3a3a; }
+  .recipe-option.active { background: #2d4a38; border: 1px solid #48bb78; }
+  .recipe-option-name { font-size: 13px; font-weight: 600; color: #e0e0e0; }
+  .recipe-option-meta { font-size: 11px; color: #cbd5e0; opacity: 0.8; margin-top: 2px; }
+  .alt-tag { font-size: 9px; background: #ff8c42; color: #1a1a1a; padding: 1px 5px; border-radius: 3px; font-weight: 700; vertical-align: middle; }
+  .node-swap-hint { font-size: 9px; margin-top: 4px; opacity: 0.85; font-style: italic; }
+  .node-overridden { border: 2px solid #48bb78 !important; box-shadow: 0 0 0 2px rgba(72,187,120,0.4), 0 4px 12px rgba(0,0,0,0.4); }
+  .override-status { background: #2d4a38; border: 1px solid #48bb78; color: #48bb78; padding: 10px 14px; border-radius: 8px; margin-bottom: 20px; font-weight: 600; font-size: 14px; }
+  .override-status button { padding: 4px 10px; font-size: 12px; margin-left: 10px; background: #48bb78; box-shadow: none; }
   </style>
 </head>
 <body>
@@ -68,7 +80,7 @@
       </div>
       <div>
         <label>Max Act:</label>
-        <select id="phase-select">
+        <select id="phase-select" onchange="calculate()">
           <option value="1">Act I</option>
           <option value="2" {% if not allow_reload %}disabled style="color: #666;"{% endif %}>Act II {% if not allow_reload %}🔒{% endif %}</option>
           <option value="3" {% if not allow_reload %}disabled style="color: #666;"{% endif %}>Act III {% if not allow_reload %}🔒{% endif %}</option>
@@ -105,6 +117,7 @@
   <script>
     let alternateRecipes = [];
     let importedAllowedRecipes = null;
+    let recipeOverrides = {};
     function loadAlternateRecipes() {
       fetch('/get_alternate_recipes')
       .then(r => r.json())
@@ -151,7 +164,7 @@
       fetch('/calculate', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({resource: resource, quantity: parseFloat(quantity), phase: parseInt(phase), allow_alternate: allowAlternate, allowed_alternates: allowedAlternates, allowed_recipes: importedAllowedRecipes})
+        body: JSON.stringify({resource: resource, quantity: parseFloat(quantity), phase: parseInt(phase), allow_alternate: allowAlternate, allowed_alternates: allowedAlternates, allowed_recipes: importedAllowedRecipes, recipe_overrides: recipeOverrides})
       })
       .then(r => r.json())
       .then(data => {
@@ -168,6 +181,10 @@
     
     function displayResults(data) {
       let html = '';
+      const overrideCount = Object.keys(recipeOverrides).length;
+      if (overrideCount > 0) {
+        html += `<div class="override-status">${overrideCount} custom recipe choice${overrideCount > 1 ? 's' : ''} active <button onclick="clearRecipeOverrides()">Reset to auto</button></div>`;
+      }
       if (data.warning) {
         html += `<div class="warning-box">${data.warning}</div>`;
       }
@@ -195,6 +212,59 @@
       renderGraph(data.graph);
     }
     
+    function showRecipePicker(resourceKey, displayName, currentRecipeId, anchorEl) {
+      closeRecipePicker();
+      const phase = document.getElementById('phase-select').value;
+      const popover = document.createElement('div');
+      popover.id = 'recipe-picker';
+      popover.className = 'recipe-picker';
+      popover.innerHTML = '<div class="recipe-picker-title">Loading recipes…</div>';
+      popover.addEventListener('click', (e) => e.stopPropagation());
+      document.body.appendChild(popover);
+      const rect = anchorEl.getBoundingClientRect();
+      popover.style.left = (rect.right + 8) + 'px';
+      popover.style.top = rect.top + 'px';
+      fetch(`/get_recipes_for_resource?resource=${encodeURIComponent(resourceKey)}&phase=${phase}`)
+      .then(r => r.json())
+      .then(recipes => {
+        const hasOverride = !!recipeOverrides[resourceKey];
+        let html = `<div class="recipe-picker-title">${displayName}</div>`;
+        html += `<div class="recipe-option ${hasOverride ? '' : 'active'}" data-id="__auto__"><div class="recipe-option-name">Auto (best available)${hasOverride ? '' : ' ✓'}</div></div>`;
+        for (const rec of recipes) {
+          const isActive = recipeOverrides[resourceKey] === rec.id;
+          const isCurrent = !hasOverride && rec.id === currentRecipeId;
+          const altTag = rec.is_alternate ? ' <span class="alt-tag">ALT</span>' : '';
+          const currentTag = isCurrent ? ' <span style="opacity:0.7;font-size:10px;">(current)</span>' : '';
+          html += `<div class="recipe-option ${isActive ? 'active' : ''}" data-id="${rec.id}"><div class="recipe-option-name">${rec.display_name}${altTag}${currentTag}</div><div class="recipe-option-meta">${rec.building} · ${rec.inputs}</div></div>`;
+        }
+        popover.innerHTML = html;
+        popover.querySelectorAll('.recipe-option').forEach(opt => {
+          opt.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const id = opt.getAttribute('data-id');
+            if (id === '__auto__') { delete recipeOverrides[resourceKey]; } else { recipeOverrides[resourceKey] = id; }
+            closeRecipePicker();
+            calculate();
+          });
+        });
+        const pbRect = popover.getBoundingClientRect();
+        if (pbRect.right > window.innerWidth) { popover.style.left = Math.max(8, rect.left - pbRect.width - 8) + 'px'; }
+        if (pbRect.bottom > window.innerHeight) { popover.style.top = Math.max(8, window.innerHeight - pbRect.height - 8) + 'px'; }
+      });
+    }
+
+    function closeRecipePicker() {
+      const existing = document.getElementById('recipe-picker');
+      if (existing) existing.remove();
+    }
+
+    function clearRecipeOverrides() {
+      recipeOverrides = {};
+      calculate();
+    }
+
+    document.addEventListener('click', () => closeRecipePicker());
+
     function renderGraph(graph) {
       const container = document.getElementById('graph-container');
       container.innerHTML = '';
@@ -290,12 +360,19 @@
           `;
         } else {
           div.classList.add('node-production');
+          const isOverridden = node.output_resource_key && recipeOverrides[node.output_resource_key];
+          if (isOverridden) div.classList.add('node-overridden');
           div.innerHTML = `
             <div class="node-title">${node.output_resource}</div>
             <div class="node-rate">${node.output_rate.toFixed(1)}/min</div>
             <div class="node-building" style="font-size: 10px; opacity: 0.8; font-style: italic;">${node.recipe}</div>
             <div class="node-building">${node.building_count.toFixed(2)}x ${node.building}</div>
+            <div class="node-swap-hint">${isOverridden ? '⚙ custom recipe' : '⇄ click to change'}</div>
           `;
+          if (node.output_resource_key) {
+            div.style.cursor = 'pointer';
+            div.addEventListener('click', (e) => { e.stopPropagation(); showRecipePicker(node.output_resource_key, node.output_resource, node.recipe_id, div); });
+          }
         }
         div.style.left = pos.x + 'px';
         div.style.top = pos.y + 'px';
