@@ -287,7 +287,8 @@ class RecipeParser:
 
 class ProductionCalculator:
   BASE_RESOURCES = {'ORE', 'MAGIC_ESSENCE', 'SUNDROP', 'GOLD_ORE', 'ARCANE_CRYSTAL', 'COAL', 'CINDER', 'WATER', 'OIL', 'LIMESTONE',
-                    'COPPER_ORE', 'TIN_ORE', 'SLAG', 'SILVER_ORE', 'CRYSTAL_ORE', 'ADAMANTINE_ORE', 'VOIDSTONE_ORE'}
+                    'COPPER_ORE', 'TIN_ORE', 'SLAG', 'SILVER_ORE', 'CRYSTAL_ORE', 'ADAMANTINE_ORE', 'VOIDSTONE_ORE', 'RUNESTONE',
+                    'STARFALL_ORE', 'MITHRIL_ORE', 'CRYSTAL_POWDER'}
   
   def __init__(self, recipes: Dict[str, Recipe]):
     self.recipes = recipes
