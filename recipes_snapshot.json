@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-03T06:42:47.566005",
+  "timestamp": "2026-06-07T12:30:20.061450",
   "recipes": {
     "adamantine_component": {
       "id": "adamantine_component",
@@ -267,6 +267,26 @@
       "energy_consumption": 12,
       "mana_consumption": 0.0,
       "phase": 2,
+      "alternate_recipe": false
+    },
+    "cosmic_assembly": {
+      "id": "cosmic_assembly",
+      "display_name": "Cosmic Assembly",
+      "inputs": {
+        "ETHEREAL_STEEL": 4,
+        "BLESSED_CONDUIT": 4,
+        "STEEL_COMPONENT": 4,
+        "MITHRIL_COMPONENT": 4
+      },
+      "outputs": {
+        "COSMIC_ASSEMBLY": 1
+      },
+      "production_time": 10.0,
+      "building_type": "Assembler",
+      "required_research": "cosmic_assembly",
+      "energy_consumption": 40,
+      "mana_consumption": 0.0,
+      "phase": 3,
       "alternate_recipe": false
     },
     "crystal_assembly": {
@@ -648,6 +668,26 @@
       "energy_consumption": 20,
       "mana_consumption": 0.0,
       "phase": 2,
+      "alternate_recipe": false
+    },
+    "radiant_assembly": {
+      "id": "radiant_assembly",
+      "display_name": "Radiant Assembly",
+      "inputs": {
+        "ENCHANTED_STEEL": 4,
+        "CRYSTAL_WIRE": 6,
+        "COPPER_WIRE": 10,
+        "STELLAR_COMPONENT": 4
+      },
+      "outputs": {
+        "RADIANT_ASSEMBLY": 1
+      },
+      "production_time": 12.0,
+      "building_type": "Assembler",
+      "required_research": "radiant_assembly",
+      "energy_consumption": 40,
+      "mana_consumption": 0.0,
+      "phase": 3,
       "alternate_recipe": false
     },
     "reinforced_plating": {
@@ -1066,6 +1106,23 @@
       "phase": 3,
       "alternate_recipe": true
     },
+    "merchant_prospecting": {
+      "id": "merchant_prospecting",
+      "display_name": "Prospecting",
+      "inputs": {
+        "ORE": 2
+      },
+      "outputs": {
+        "LIMESTONE": 1
+      },
+      "production_time": 5.0,
+      "building_type": "Crusher",
+      "required_research": "merchant_prospecting",
+      "energy_consumption": 10,
+      "mana_consumption": 0.0,
+      "phase": 2,
+      "alternate_recipe": true
+    },
     "refined_fuel": {
       "id": "refined_fuel",
       "display_name": "Refined Fuel",
@@ -1307,6 +1364,26 @@
       "mana_consumption": 60.0,
       "phase": 3,
       "alternate_recipe": true
+    },
+    "legion_annihilator": {
+      "id": "legion_annihilator",
+      "display_name": "Legion Annihilator",
+      "inputs": {
+        "STAR_RENDER": 2,
+        "LEGION_FRAME": 4,
+        "LEGION_CORE": 4,
+        "LEGION_MATRIX": 4
+      },
+      "outputs": {
+        "LEGION_ANNIHILATOR": 1
+      },
+      "production_time": 60.0,
+      "building_type": "Mana Forge",
+      "required_research": "legion_annihilator",
+      "energy_consumption": 50,
+      "mana_consumption": 300.0,
+      "phase": 3,
+      "alternate_recipe": false
     },
     "mana_bomb_crafting": {
       "id": "mana_bomb_crafting",
@@ -1824,6 +1901,68 @@
       "phase": 3,
       "alternate_recipe": false
     },
+    "legion_core": {
+      "id": "legion_core",
+      "display_name": "Legion Core",
+      "inputs": {
+        "ENHANCED_CORE": 4,
+        "STAR_CORE": 4,
+        "CELESTIAL_MATRIX": 4,
+        "COSMIC_ASSEMBLY": 4,
+        "RADIANT_ASSEMBLY": 4
+      },
+      "outputs": {
+        "LEGION_CORE": 1
+      },
+      "production_time": 20.0,
+      "building_type": "Oilworks",
+      "required_research": "legion_core",
+      "energy_consumption": 50,
+      "mana_consumption": 0.0,
+      "phase": 3,
+      "alternate_recipe": false
+    },
+    "legion_frame": {
+      "id": "legion_frame",
+      "display_name": "Legion Frame",
+      "inputs": {
+        "HYBRID_MATRIX": 6,
+        "CELESTIAL_SYSTEM": 4,
+        "ETERNAL_ASSEMBLY": 4,
+        "COSMIC_ASSEMBLY": 4
+      },
+      "outputs": {
+        "LEGION_FRAME": 1
+      },
+      "production_time": 20.0,
+      "building_type": "Oilworks",
+      "required_research": "legion_frame",
+      "energy_consumption": 50,
+      "mana_consumption": 0.0,
+      "phase": 3,
+      "alternate_recipe": false
+    },
+    "legion_matrix": {
+      "id": "legion_matrix",
+      "display_name": "Legion Matrix",
+      "inputs": {
+        "ETHEREAL_ASSEMBLY": 4,
+        "QUANTUM_SYSTEM": 4,
+        "CELESTIAL_MATRIX": 4,
+        "ETERNAL_ASSEMBLY": 4,
+        "RADIANT_ASSEMBLY": 4
+      },
+      "outputs": {
+        "LEGION_MATRIX": 1
+      },
+      "production_time": 20.0,
+      "building_type": "Oilworks",
+      "required_research": "legion_matrix",
+      "energy_consumption": 50,
+      "mana_consumption": 60.0,
+      "phase": 3,
+      "alternate_recipe": false
+    },
     "merchant_adamantine_mastery": {
       "id": "merchant_adamantine_mastery",
       "display_name": "Adamantine Mastery",
@@ -2134,6 +2273,23 @@
       "energy_consumption": 10,
       "mana_consumption": 0.0,
       "phase": 2,
+      "alternate_recipe": true
+    },
+    "chest_dirty_gold": {
+      "id": "chest_dirty_gold",
+      "display_name": "Dirty Gold",
+      "inputs": {
+        "GOLD_ORE": 3
+      },
+      "outputs": {
+        "GOLD_INGOT": 1
+      },
+      "production_time": 6.0,
+      "building_type": "Smelter",
+      "required_research": "chest_dirty_gold",
+      "energy_consumption": 10,
+      "mana_consumption": 0.0,
+      "phase": 1,
       "alternate_recipe": true
     },
     "chest_gold_resmelting": {
@@ -2867,6 +3023,7 @@
     "chest_cinder_compression": 2,
     "chest_coal_ultraspiking": 3,
     "chest_copper_resmelting": 2,
+    "chest_dirty_gold": 1,
     "chest_elesteel_component": 3,
     "chest_gold_resmelting": 3,
     "chest_key_smashing": 2,
@@ -2901,6 +3058,7 @@
     "conveyor_efficiency_8": 2,
     "conveyor_efficiency_9": 2,
     "copper_wire": 2,
+    "cosmic_assembly": 3,
     "crystal_assembly": 3,
     "crystal_key": 3,
     "crystal_packing": 3,
@@ -2936,6 +3094,10 @@
     "improved_trade": 1,
     "industrial_alchemy": 2,
     "ingot_resmelting": 2,
+    "legion_annihilator": 3,
+    "legion_core": 3,
+    "legion_frame": 3,
+    "legion_matrix": 3,
     "logic_module_tech": 3,
     "lucky_alchemy": 3,
     "magical_alchemy": 2,
@@ -2961,6 +3123,7 @@
     "merchant_essence_infusion": 1,
     "merchant_essence_purification": 2,
     "merchant_powder_recycling": 3,
+    "merchant_prospecting": 2,
     "merchant_pure_blessed_conduit": 3,
     "merchant_pure_mana_bomb": 2,
     "merchant_quenched_fortress_machinery": 3,
@@ -2982,12 +3145,14 @@
     "overclock_module_tech": 3,
     "overflow_routing": 1,
     "overflow_routing_2": 3,
+    "power_efficiency": 1,
     "power_optimization": 1,
     "protective_wards": 1,
     "pure_cannon": 2,
     "purified_solvent": 2,
     "quantitative_logistics": 2,
     "quantum_system": 3,
+    "radiant_assembly": 3,
     "reality_rend": 2,
     "refined_fuel": 2,
     "reinforced_plating": 2,

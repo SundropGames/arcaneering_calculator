@@ -111,9 +111,9 @@ class RecipeParser:
             content = f.read()
             id_match = re.search(r'id = "([^"]+)"', content)
             phase_match = re.search(r'phase = (\d+)', content)
-            if id_match and phase_match:
+            if id_match:
               research_id = id_match.group(1)
-              phase = int(phase_match.group(1))
+              phase = int(phase_match.group(1)) if phase_match else 1
               self.research_phase_map[research_id] = phase
         except Exception as e:
           print(f"Error parsing research {filepath}: {e}")
